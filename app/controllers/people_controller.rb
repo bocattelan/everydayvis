@@ -7,29 +7,36 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
+    
+    @calendar = @person.days.map do |day|
+      { activity: day.activities.sum(:activity), weather: day.weathers.first, datetime: day.date }
+    end
+
+    @map = 'lolololo' #map person.map_data.to_json
   end
 
   def person_hour
     person = Person.find(params[:id])
     datetime = Time.zone.local(params[:year].to_i, params[:month].to_i, params[:day].to_i, params[:hour].to_i, 0, 0)
-    render json: person.at_hour(datetime)
+    render json: person.day(datetime.to_date).activities_at_hour(datetime).map(&:activity)
   end
 
   def clock_day
     person = Person.find(params[:id])
     date = Time.zone.local(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+    day = person.day(date)
     clock_data = {
       user_id: person.id,
       date: date,
-      sunrise: person.sunrise_at(date),
-      sunset: person.sunset_at(date),
-      max_activity: person.activities.map(&:activity).max
+      sunrise: day.sunrise,
+      sunset: day.sunset,
+      max_activity: day.activities.map(&:activity).max
     }
 
-    clock_data[:activities]   = person.activities_with_interval(date, 60) if person.has(:activities)
-    clock_data[:luminosity]   = person.luminosity_with_interval(date, 60) if person.has(:luminosities)
-    clock_data[:works]        = person.on_date_works(date)                if person.has(:works)
-    clock_data[:weather]      = person.weathers.select{|w| w.date == date.to_date}.first if person.has(:weathers)
+    clock_data[:activities]   = day.activities_with_interval(60) if day.has(:activities)
+    clock_data[:luminosity]   = day.luminosity_with_interval(60) if day.has(:luminosities)
+    clock_data[:works]        = day.works                        if day.has(:works)
+    clock_data[:weather]      = day.weathers.first               if day.has(:weathers)
 
     render json: clock_data
   end
@@ -38,7 +45,7 @@ class PeopleController < ApplicationController
     person = Person.find(params[:id])
     date = Time.zone.local(params[:year].to_i, params[:month].to_i, params[:day].to_i)
 
-    render json: person.on_date(date)
+    render json: person.day(date).activities
   end
 
 end
