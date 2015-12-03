@@ -90,17 +90,6 @@ if !nedel
       )
   end
 
-  CSV.foreach('db/data/jawbone.csv', headers: true) do |row|
-    d = row['DATE']
-    dd = Date.new(d[0..3].to_i, d[4..5].to_i, d[6..7].to_i)
-
-    Sleep.create!(
-        person:     person,
-        date:       dd,
-        sleep_time: row['s_asleep_time'],
-      )
-  end
-
   checkins = JSON(open('db/data/checkins.json').read)
   checkins['response']['checkins']['items'].each do |item|
     d = DateTime.strptime(item['createdAt'].to_s, '%s')

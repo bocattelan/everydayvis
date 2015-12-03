@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202134805) do
+ActiveRecord::Schema.define(version: 20151203150815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,33 +19,42 @@ ActiveRecord::Schema.define(version: 20151202134805) do
   create_table "activities", force: :cascade do |t|
     t.datetime "datetime"
     t.integer  "activity"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "activities", ["person_id"], name: "index_activities_on_person_id", using: :btree
+  add_index "activities", ["day_id"], name: "index_activities_on_day_id", using: :btree
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "datetime"
     t.text     "description"
     t.text     "summary"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "appointments", ["person_id"], name: "index_appointments_on_person_id", using: :btree
+  add_index "appointments", ["day_id"], name: "index_appointments_on_day_id", using: :btree
 
   create_table "daylights", force: :cascade do |t|
     t.datetime "sunrise"
     t.datetime "sunset"
+    t.integer  "day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "daylights", ["day_id"], name: "index_daylights_on_day_id", using: :btree
+
+  create_table "days", force: :cascade do |t|
+    t.date     "date"
     t.integer  "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "daylights", ["person_id"], name: "index_daylights_on_person_id", using: :btree
+  add_index "days", ["person_id"], name: "index_days_on_person_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.datetime "datetime"
@@ -54,22 +63,22 @@ ActiveRecord::Schema.define(version: 20151202134805) do
     t.string   "country"
     t.decimal  "latitude"
     t.decimal  "longitude"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "locations", ["person_id"], name: "index_locations_on_person_id", using: :btree
+  add_index "locations", ["day_id"], name: "index_locations_on_day_id", using: :btree
 
   create_table "luminosities", force: :cascade do |t|
     t.datetime "datetime"
     t.float    "light"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "luminosities", ["person_id"], name: "index_luminosities_on_person_id", using: :btree
+  add_index "luminosities", ["day_id"], name: "index_luminosities_on_day_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "code"
@@ -85,12 +94,12 @@ ActiveRecord::Schema.define(version: 20151202134805) do
   create_table "sleeps", force: :cascade do |t|
     t.date     "date"
     t.integer  "sleep_time"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "sleeps", ["person_id"], name: "index_sleeps_on_person_id", using: :btree
+  add_index "sleeps", ["day_id"], name: "index_sleeps_on_day_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -117,30 +126,31 @@ ActiveRecord::Schema.define(version: 20151202134805) do
     t.integer  "min_temperature"
     t.integer  "precipitation"
     t.string   "events"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "weathers", ["person_id"], name: "index_weathers_on_person_id", using: :btree
+  add_index "weathers", ["day_id"], name: "index_weathers_on_day_id", using: :btree
 
   create_table "works", force: :cascade do |t|
     t.string   "name"
     t.datetime "start"
     t.datetime "finish"
-    t.integer  "person_id"
+    t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "works", ["person_id"], name: "index_works_on_person_id", using: :btree
+  add_index "works", ["day_id"], name: "index_works_on_day_id", using: :btree
 
-  add_foreign_key "activities", "people"
-  add_foreign_key "appointments", "people"
-  add_foreign_key "daylights", "people"
-  add_foreign_key "locations", "people"
-  add_foreign_key "luminosities", "people"
-  add_foreign_key "sleeps", "people"
-  add_foreign_key "weathers", "people"
-  add_foreign_key "works", "people"
+  add_foreign_key "activities", "people", column: "day_id"
+  add_foreign_key "appointments", "people", column: "day_id"
+  add_foreign_key "daylights", "people", column: "day_id"
+  add_foreign_key "days", "people"
+  add_foreign_key "locations", "people", column: "day_id"
+  add_foreign_key "luminosities", "people", column: "day_id"
+  add_foreign_key "sleeps", "people", column: "day_id"
+  add_foreign_key "weathers", "people", column: "day_id"
+  add_foreign_key "works", "people", column: "day_id"
 end
