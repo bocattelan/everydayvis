@@ -16,12 +16,12 @@ h1 Smada#dados-index
     var chart = c3.generate({
       bindto: d3.select(".smada-dados-" + idx),
       size: {
-        height: 180
+        height: 360
       },
       data: {
         x: 'x',
         columns: [xaxis, yaxis],
-        type: 'line'
+        type: 'area'
       },
       axis: {
         x: {
