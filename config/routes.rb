@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'smada/dados'
+  get 'smada/index'
 
   root 'pages#index'
 
