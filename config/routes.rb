@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'weather/:year/:month/:day/:latitude/:longitude', to: 'weather#show', constraints: { format: :json }
 
   get 'smada/dados', to: 'smada#dados'
+  get 'smada/index', to: 'smada#index'
 
   get 'dataLogin' => 'login#index'
   get 'uploadFile' => 'import#index'
