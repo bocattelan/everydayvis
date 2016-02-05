@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'smada/dados', to: 'smada#dados'
   get 'smada/index', to: 'smada#index'
+  get 'smada/last_hours', to: 'smada#last_hours'
 
   get 'dataLogin' => 'login#index'
   get 'uploadFile' => 'import#index'
