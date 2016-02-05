@@ -12,6 +12,7 @@ class SmadaController < ApplicationController
   end
 
   def index
+    @sensorId = []
     @sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM dados;")
     @dados = []
     @dados << Smada.conn.execute("SELECT * FROM dados WHERE sub_sensor_id = 1 AND timestamp > '2016-01-30 11:00'")
