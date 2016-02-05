@@ -1,4 +1,5 @@
 class Dados < ActiveRecord::Base
+  self.table_name = "dados"
   def self.conn
     ActiveRecord::Base.establish_connection(
       :adapter  => "postgresql",
