@@ -8,6 +8,8 @@ h1 Smada#dados-index
     var yaxis = ['sub_sensor_id ' + (+idx + 1)];
 
     var data = $(".smada-dados-" + idx).data("info");
+
+
     data.forEach(function(d) {
       xaxis.push(new Date(d['timestamp']));
       yaxis.push(+d['payload']);
@@ -21,7 +23,8 @@ h1 Smada#dados-index
       },
       data: {
         x: 'x',
-        columns: [xaxis, yaxis],
+        columns: [xaxis, 
+        [yaxis]],
         type: 'area'
       },
       axis: {
