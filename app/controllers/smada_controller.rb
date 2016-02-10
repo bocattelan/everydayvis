@@ -12,6 +12,8 @@ class SmadaController < ApplicationController
   end
 
   def index
+    # @bagulho = Dados.where(sub_sensor_id: 1)
+
     @sensorId = []
     @sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM dados;")
 
