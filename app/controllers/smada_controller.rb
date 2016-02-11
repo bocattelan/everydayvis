@@ -15,18 +15,16 @@ class SmadaController < ApplicationController
     # @bagulho = Dados.where(sub_sensor_id: 1)
 
     @sensorId = []
-    @sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM data;")
+    @sensorId = Dados.select('id_sensor').uniq
+
+    @endDeviceId = []
+    @endDeviceId = Dados.select('id_end_device').uniq
 
     @dados = []
-
-    @sensorId.first.each do |id|
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 1 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 2 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 3 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 4 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 5 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 6 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
-      @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 7 AND timestamp > '2016-01-30 11:00' AND id_sensor =" + id["id_sensor"].to_s)
+    @sensorId.each do |id_sensor|
+      @endDeviceId.each do |end_device|
+        @dados << Dados.where("id_end_device = " + end_device["id_end_device"].to_s +" AND id_sensor =" + id_sensor["id_sensor"].to_s)
+      end
     end
   end
 
