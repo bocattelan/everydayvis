@@ -40,12 +40,14 @@ class SmadaController < ApplicationController
 
     @sensorId.each do |id_sensor|
       @endDeviceId.each do |end_device|
-        @dados << Dados.where("id_end_device = " + end_device['id_end_device'].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s + ";")
-      #@dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 2 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
-end
+        @dados << Dados.where("id_end_device = " + end_device['id_end_device'].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
+      end
+    end
   end
-  
 end
+
+      #@dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 2 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
+
 
 # Schema |     Name     | Type  |  Owner
 #--------+--------------+-------+----------
