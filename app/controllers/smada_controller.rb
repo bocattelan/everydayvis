@@ -37,7 +37,7 @@ class SmadaController < ApplicationController
 
     @dados = []
 
-    @sensorId.first.each do |id|
+    @sensorId.each do |id|
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 1 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 2 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 3 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
