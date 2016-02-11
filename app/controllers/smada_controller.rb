@@ -32,7 +32,8 @@ class SmadaController < ApplicationController
 
   def last_hours
     @sensorId = []
-    @sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM data;")
+    #@sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM data;")
+    @sensorId << Dados.select('id_sensor')
 
     @dados = []
 
