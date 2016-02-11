@@ -1,4 +1,4 @@
-class Dados < ActiveRecord::Base
+class Data < ActiveRecord::Base
 
   ActiveRecord::Base.establish_connection(
     :adapter  => "postgresql",
