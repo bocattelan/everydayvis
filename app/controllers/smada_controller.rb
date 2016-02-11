@@ -32,17 +32,15 @@ class SmadaController < ApplicationController
 
   def last_hours
     @sensorId = []
-    #@sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM data;")
-    @sensorId << Dados.select('id_sensor').uniq
+    @sensorId = Dados.select('id_sensor').uniq
 
     @endDeviceId = []
-    @endDeviceId << Dados.select('id_end_device').uniq
+    @endDeviceId = Dados.select('id_end_device').uniq
 
     @dados = []
-
     @sensorId.each do |id_sensor|
       @endDeviceId.each do |end_device|
-        @dados << Dados.where("id_end_device = " + end_device[0]["id_end_device"].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id_sensor[0]["id_sensor"].to_s)
+        @dados << Dados.where("id_end_device = " + end_device["id_end_device"].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id_sensor["id_sensor"].to_s)
       end
     end
   end
