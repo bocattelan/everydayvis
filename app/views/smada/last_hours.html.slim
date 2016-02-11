@@ -4,6 +4,7 @@ h1 Smada#Últimas 6 horas
   div[class="smada-dados-#{index}" data-info="#{sensor_data.to_json}"]
     unless sensor_data.first.nil?
       h3 = "#{sensor_data.first.id_end_device} isso eh uma string <3 #{sensor_data.first.sensor_id}"
+    end
   javascript:
     var idx = "#{index}";
     var xaxis = ['x'];
