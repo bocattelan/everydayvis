@@ -34,6 +34,8 @@ class SmadaController < ApplicationController
     @sensorId = []
     #@sensorId << Smada.conn.execute("SELECT DISTINCT id_sensor FROM data;")
     @sensorId << Dados.select('id_sensor').uniq
+
+    @endDeviceId = []
     @endDeviceId << Dados.select('id_end_device').uniq
 
     @dados = []
