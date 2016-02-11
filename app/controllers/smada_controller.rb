@@ -42,7 +42,7 @@ class SmadaController < ApplicationController
 
     @sensorId.each do |id_sensor|
       @endDeviceId.each do |end_device|
-        @dados << Dados.where("id_end_device = " + end_device["id_end_device"].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + '1')
+        @dados << Dados.where("id_end_device = " + end_device[0]["id_end_device"].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id[0]["id_sensor"].to_s)
       end
     end
   end
