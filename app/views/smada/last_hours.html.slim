@@ -5,9 +5,10 @@ h1 Smada#Últimas 6 horas
   javascript:
     var idx = "#{index}";
     var xaxis = ['x'];
-    var yaxis = ['id_sensor: #{sensor_data.first["sensor_id"]}'];
+    
 
     var data = $(".smada-dados-" + idx).data("info");
+    var yaxis = ['sub_sensor_id ' + data[0]['id_end_device']];
     data.forEach(function(d) {
       xaxis.push(new Date(d['timestamp']));
       yaxis.push(+d['payload']);
