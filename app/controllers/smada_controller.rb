@@ -44,6 +44,7 @@ class SmadaController < ApplicationController
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 5 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 6 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
       @dados << Smada.conn.execute("SELECT * FROM data WHERE id_end_device = 7 AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id["id_sensor"].to_s)
+      @dados = @dados.compact
     end
   end
   
