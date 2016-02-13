@@ -11,7 +11,12 @@ h1 Smada#Últimas 6 horas
     var data = $(".smada-dados-" + idx).data("info");
     var sensorType = $(".sensors").data("name");
     console.log(sensorType)
-    var yaxis = ['id_sensor: ' + data[0]['id_sensor'] + ' || id_end_device: ' + data[0]['id_end_device']];
+    for (var i = 0, len = arr.length; i < len; i++) {
+      if (sensorType[i]['id_end_device'] == data[0]['id_end_device'] && sensorType[i]['id_sensor'] == data[0]['id_sensor']){
+        var yaxis = ['id_sensor: ' + data[0]['id_sensor'] + ' || id_end_device: ' + data[0]['id_end_device'] + ' || sensor type: ' + sensorType['sensor_name']];
+        break;
+        }
+    }
     data.forEach(function(d) {
       xaxis.push(new Date(d['timestamp']));
       yaxis.push(+d['payload']);
