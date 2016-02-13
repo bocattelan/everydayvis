@@ -17,6 +17,9 @@ class SmadaController < ApplicationController
     @sensorId = []
     @sensorId = Dados.select('id_sensor').uniq
 
+    @sensorName = []
+    @sensorName = Sensor.all
+
     @endDeviceId = []
     @endDeviceId = Dados.select('id_end_device').uniq
 
