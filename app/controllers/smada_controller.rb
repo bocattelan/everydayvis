@@ -24,8 +24,8 @@ class SmadaController < ApplicationController
     @endDeviceId = Dados.select('id_end_device').uniq
 
     @dados = []
-    @sensorId.each do |id_sensor|
-      @endDeviceId.each do |end_device|
+    @endDeviceId.each do |end_device|
+      @sensorId.each do |id_sensor|
         @dados << Dados.where("id_end_device = " + end_device["id_end_device"].to_s + " AND id_sensor =" + id_sensor["id_sensor"].to_s)
       end
     end
@@ -42,8 +42,8 @@ class SmadaController < ApplicationController
     @endDeviceId = Dados.select('id_end_device').uniq
 
     @dados = []
-    @sensorId.each do |id_sensor|
-      @endDeviceId.each do |end_device|
+    @endDeviceId.each do |end_device|
+      @sensorId.each do |id_sensor|
         @dados << Dados.where("id_end_device = " + end_device["id_end_device"].to_s + " AND timestamp > '" + 6.hours.ago.to_s + "' AND id_sensor =" + id_sensor["id_sensor"].to_s)
         #@dados << Dados.where(id_end_device: end_device['id_end_device'].to_s and timestamp: (6.hours.ago)..Time.now) and id_sensor: id_sensor["id_sensor"].to_s)
       end

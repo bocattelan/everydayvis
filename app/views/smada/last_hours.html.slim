@@ -12,7 +12,7 @@ h1 Smada#Últimas 6 horas
     var sensorType = $(".sensors").data("name");
     for (var i = 0, len = sensorType.length; i < len; i++) {
       if (sensorType[i]['id_end_device'] == data[0]['id_end_device'] && sensorType[i]['id_sensor'] == data[0]['id_sensor']){
-        var yaxis = ['id_sensor: ' + data[0]['id_sensor'] + ' || id_end_device: ' + data[0]['id_end_device'] + ' || sensor type: ' + sensorType[i]['sensor_name']];
+        var yaxis = ['id_end_device: ' + data[0]['id_end_device'] + ' || id_sensor: ' + data[0]['id_sensor'] +  ' || sensor type: ' + sensorType[i]['sensor_name']];
         break;
         }
     }
