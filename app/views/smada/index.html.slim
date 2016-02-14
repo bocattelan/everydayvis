@@ -14,6 +14,7 @@ h1 Smada#dados-index
     for (var i = 0, len = sensorType.length; i < len; i++) {
       if (sensorType[i]['id_end_device'] == data[0]['id_end_device'] && sensorType[i]['id_sensor'] == data[0]['id_sensor']){
         var yaxis = ['id_end_device: ' + data[0]['id_end_device'] + ' || id_sensor: ' + data[0]['id_sensor'] +  ' || sensor type: ' + sensorType[i]['sensor_name']];
+        var type = sensorType[i]['sensor_name'];
         break;
         }
     }
@@ -21,6 +22,17 @@ h1 Smada#dados-index
       xaxis.push(new Date(d['timestamp']));
       yaxis.push(+d['payload']);
     });
+
+    for (var i = 0, len = yaxis.length; i < len; i++) {
+      switch (type){
+        case 'velocidade do vento':
+          if (yaxis[i] < 0 || yaxis > 200){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+          }
+      }
+    }
+
 
     var chart = c3.generate({
       bindto: d3.select(".smada-dados-" + idx),
