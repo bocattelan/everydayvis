@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'smada/index', to: 'smada#index'
   get 'smada/last_hours', to: 'smada#last_hours'
   get 'smada', to: 'smada#inicio'
+  get 'smada/maps', to: 'maps#index'
 
   get 'dataLogin' => 'login#index'
   get 'uploadFile' => 'import#index'
@@ -42,5 +43,5 @@ Rails.application.routes.draw do
 
 
 
-  resources :login,:people,:maps, only: [:index, :show]
+  resources :login,:people, only: [:index, :show]
 end
