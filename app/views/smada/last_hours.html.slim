@@ -22,7 +22,54 @@ h1 Smada#Últimas 6 horas
       yaxis.push(+d['payload']);
     });
 
-    
+    for (var i = 0, len = yaxis.length; i < len; i++) {
+      switch (type){
+        case 'velocidade do vento':
+          if (yaxis[i] < 0 || yaxis > 200){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei velocidade vento")
+          }
+        case 'temperatura':
+          if (yaxis[i] < -30 || yaxis > 80){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei temperatura")
+          }
+          /*
+        case 'chuva':
+          if (yaxis[i] < -30 || yaxis > 80){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei chuva")
+          }
+          */
+        case 'luminosidade':
+          if (yaxis[i] < 0 || yaxis > 16){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei luminosidade")
+          }
+        case 'Umidade':
+          if (yaxis[i] < 0 || yaxis > 100){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei Umidade")
+          }
+        case 'Pressao atmosferica':
+          if (yaxis[i] < 950000 || yaxis > 110000){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei Pressao atmosferica")
+          }
+        case 'direcao do vento':
+          if (yaxis[i] < 0 || yaxis > 359){
+            yaxis.splice(i,1);
+            xaxis.splice(i,1);
+            console.log("retirei direcao do vento")
+          }
+      }
+    }
 
     var chart = c3.generate({
       bindto: d3.select(".smada-dados-" + idx),
