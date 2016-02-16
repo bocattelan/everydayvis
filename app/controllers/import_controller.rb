@@ -13,7 +13,7 @@ class ImportController < ApplicationController
     uploaded_io = params[:file]
     
     personame = uploaded_io.original_filename
-    personame.slice! ".csv"
+    
 
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
     file.write(uploaded_io.read)
