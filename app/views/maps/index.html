@@ -42,7 +42,7 @@
         center: lalo,
         zoom: 16
       });
-
+      var geocoder = new google.maps.Geocoder();
       document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
       });
