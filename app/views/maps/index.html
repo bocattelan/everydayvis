@@ -144,6 +144,7 @@ function showAxes(ctx,axes) {
         position: lalo,
         map: map,
         title: 'Stuffy stuff',
+        infowindow: infowindow,
         //icone direto por URL
        // icon: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9'
        //icone usando o dicionario
@@ -151,9 +152,10 @@ function showAxes(ctx,axes) {
       });
 
 
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
+      google.maps.event.addListener(marker, 'click', function() {
+        this.infowindow.open(map, this);
+
+});
     }
   }
   function geocodeAddress(geocoder, resultsMap) {
