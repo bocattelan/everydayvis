@@ -125,23 +125,16 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 //FIM DAS FUNÇÕES PARA DESENHAR
-
-    for (var i = 0, len = locations.length; i < len; i++) {
-
-      var infowindow = new google.maps.InfoWindow({
+var infowindow = new google.maps.InfoWindow({
         content: contentString
       });
+//Essa função só vai ser executada quando a infowindow for aberta
+google.maps.event.addListener(infowindow, 'domready', function() {
+  draw();
+});
 
 
-
-      //Essa função só vai ser executada quando a infowindow for aberta
-      google.maps.event.addListener(infowindow, 'domready', function() {
-        draw();
-      });
-
-
-
-
+    for (var i = 0, len = locations.length; i < len; i++) {
 
 
       var values = locations[i].split(' ');
