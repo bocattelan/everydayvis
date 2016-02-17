@@ -141,10 +141,10 @@ function showAxes(ctx,axes) {
 }
 //FIM DAS FUNÇÕES PARA DESENHAR
 
-
+console.log(locations)
     for (var i = 0, len = locations.length; i < len; i++) {
       var values = locations[0].split(' ');
-      console.log(values)
+
       var lalo = {lat: parseInt(values[0]), lng: parseInt(values[0])};
       var marker = new google.maps.Marker({
         position: lalo,
