@@ -59,12 +59,6 @@
       '</div>';
 
 
-
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
       //Aqui um exemplo. Podemos pegar varias imagens de vários lugares e botar em um dicionario, ou usá-las diretamente como fiz ali embaixo
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
       var icons = {
@@ -79,11 +73,7 @@
         }
       };
 
-
-      //Essa função só vai ser executada quando a infowindow for aberta
-      google.maps.event.addListener(infowindow, 'domready', function() {
-        draw();
-      });
+      
 
 
 
@@ -137,6 +127,23 @@ function showAxes(ctx,axes) {
 //FIM DAS FUNÇÕES PARA DESENHAR
 
     for (var i = 0, len = locations.length; i < len; i++) {
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+
+
+      //Essa função só vai ser executada quando a infowindow for aberta
+      google.maps.event.addListener(infowindow, 'domready', function() {
+        draw();
+      });
+
+
+
+
+
+
       var values = locations[i].split(' ');
 
       var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
@@ -153,11 +160,18 @@ function showAxes(ctx,axes) {
 
 
       google.maps.event.addListener(marker, 'click', function() {
-        this.infowindow.open(map, this);
-
-});
+        this.infowindow.open(map, this); 
+      });
     }
   }
+
+
+
+
+
+
+
+
   function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
   geocoder.geocode({'address': address}, function(results, status) {
