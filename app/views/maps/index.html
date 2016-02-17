@@ -15,8 +15,10 @@
 
 <div id="título">Mapa de Dados</div>
 <div id="map"></div>
+<div class="locations" data-local="#{@locations}"></div>
   <script>
     var map;
+    var locations = $("locations").data("local");
     function initMap() {
       var lalo = {lat: -30.0684214, lng: -51.120619};
       map = new google.maps.Map(document.getElementById('map'), {
@@ -120,9 +122,9 @@ function showAxes(ctx,axes) {
 //FIM DAS FUNÇÕES PARA DESENHAR
 
 
-
+    for (var i = 0, len = locations.length; i < len; i++) {
       var marker = new google.maps.Marker({
-        position: lalo,
+        position: locations[i],
         map: map,
         title: 'Stuffy stuff',
         //icone direto por URL
@@ -136,6 +138,7 @@ function showAxes(ctx,axes) {
         infowindow.open(map, marker);
       });
     }
+  }
   </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&callback=initMap" async defer></script>
 
