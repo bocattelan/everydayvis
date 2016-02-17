@@ -9,12 +9,29 @@
   width: 100%;
   height: 100%;
 }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
 </style>
 
 
 
 <div id="título">Mapa de Dados</div>
 <div id="map"></div>
+<div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+</div>
 <div class="locations" data-local="#{@locations}"></div>
   <script>
     var map;
@@ -25,6 +42,11 @@
         center: lalo,
         zoom: 16
       });
+
+      var geocoder = new google.maps.Geocoder();
+
+      document.getElementById('submit').addEventListener('click', function() {
+      geocodeAddress(geocoder, map);
 
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -61,6 +83,22 @@
           icon: iconBase + 'info-i_maps.png'
         }
       };
+
+      function geocodeAddress(geocoder, resultsMap) {
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
 
 
       //Essa função só vai ser executada quando a infowindow for aberta
