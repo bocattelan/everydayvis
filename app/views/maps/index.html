@@ -33,7 +33,7 @@
       <input id="submit" type="button" value="Geocode">
 </div>
 <div class="locations" data-local="#{@locations}"></div>
-  <script>
+  <script type="text/javascript">
     var map;
     var locations = $("locations").data("local");
     function initMap() {
@@ -165,10 +165,10 @@ function showAxes(ctx,axes) {
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
+      //var marker = new google.maps.Marker({
+        //map: resultsMap,
+        //position: results[0].geometry.location
+      //});
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
