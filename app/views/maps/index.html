@@ -143,8 +143,10 @@ function showAxes(ctx,axes) {
 
 
     for (var i = 0, len = locations.length; i < len; i++) {
+      var values = locations[0].split(' ');
+      var lalo = {lat: parseInt(values[0]), lng: parseInt(values[0])};
       var marker = new google.maps.Marker({
-        position: locations[i],
+        position: lalo,
         map: map,
         title: 'Stuffy stuff',
         //icone direto por URL
