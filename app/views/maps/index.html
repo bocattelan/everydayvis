@@ -151,11 +151,10 @@ function showAxes(ctx,axes) {
       });
 
 
-      
-    }
-    marker.addListener('click', function() {
+      marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
+    }
   }
   function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
