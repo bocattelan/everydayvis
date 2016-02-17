@@ -32,10 +32,9 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
-<div class="locations" data-local="#{@locations}"></div>
   <script type="text/javascript">
     var map;
-    var locations = $("locations").data("local");
+    var locations = "#{@locations}"
     function initMap() {
       var lalo = {lat: -30.0684214, lng: -51.120619};
       map = new google.maps.Map(document.getElementById('map'), {
