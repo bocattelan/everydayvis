@@ -135,12 +135,12 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 //FIM DAS FUNÇÕES PARA DESENHAR
-var marker = [];
+
     for (var i = 0, len = locations.length; i < len; i++) {
       var values = locations[i].split(' ');
 
       var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
-      marker.push(new google.maps.Marker({
+      var marker = new google.maps.Marker({
         position: lalo,
         map: map,
         title: 'Stuffy stuff',
@@ -148,13 +148,14 @@ var marker = [];
        // icon: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9'
        //icone usando o dicionario
         icon: icons['library'].icon
-      }))
+      });
 
 
-      marker[marker.length -1].addListener('click', function() {
+      
+    }
+    marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
-    }
   }
   function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
