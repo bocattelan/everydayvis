@@ -53,7 +53,7 @@
 
       //adicionei uma foto e um canvas
       '<img src="https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9" >' +
-      '<canvas id="canvas" width="502" height="108"></canvas>' + 
+      '<div id="temperature"></div>' + 
 
 
       '</div>'+
@@ -107,7 +107,7 @@ function draw(markerPosition) {
       yaxis.push(+d['payload']);
     });
  var chart = c3.generate({
-      bindto: d3.select("canvas"),
+      bindto: d3.select("temperature"),
       size: {
         height: 180,
         width: 4320
