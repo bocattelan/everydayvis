@@ -29,7 +29,7 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
-<div class="temperatureGraph"></div>
+<div id="temperatureGraph"></div>
   <script>
     var map;
      data = <%= raw(@dados.to_json) %>;
@@ -108,7 +108,7 @@ function draw(markerPosition) {
       console.log(yaxis)
     });
  var chart = c3.generate({
-      bindto: d3.select("temperatureGraph"),
+      bindto: document.getElementById("temperatureGraph"),
       size: {
         height: 180,
         width: 4320
