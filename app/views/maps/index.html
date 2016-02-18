@@ -89,7 +89,7 @@ function draw(markerPosition) {
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
     var values = data[i][0]['localizacao'].split(' ');
-    var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]) lng:parseFloat(values[1])})
+    var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
 
 
     console.log(markerPosition)
