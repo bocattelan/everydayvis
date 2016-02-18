@@ -21,6 +21,8 @@ class MapsController < ApplicationController
     @endDeviceId.each do |end_device|
       @sensorId.each do |id_sensor|
         @dados << Dados.where("id_end_device = ? AND id_sensor = ?", end_device["id_end_device"].to_s, id_sensor["id_sensor"].to_s).order("timestamp")
+      end
+    end
   end
 
 end
