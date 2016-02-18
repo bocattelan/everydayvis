@@ -105,6 +105,7 @@ function draw(markerPosition) {
       //date.setHours(date.getHours()+2);
       xaxis.push(date);
       yaxis.push(+d['payload']);
+      console.log(yaxis)
     });
  var chart = c3.generate({
       bindto: d3.select("temperatureGraph"),
