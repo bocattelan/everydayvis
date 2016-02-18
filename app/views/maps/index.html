@@ -89,6 +89,7 @@ function draw(Markerposition) {
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
     if(String(Markerposition['lat']) + ' ' + String(Markerposition['lng']) == data[i][0]['localizacao']){
+      console.log(String(Markerposition['lat']) + ' ' + String(Markerposition['lng']))
       var index = i;
       break;
     }
