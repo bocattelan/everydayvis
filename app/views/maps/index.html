@@ -33,9 +33,13 @@
   <h4 id="temperatureTitle">Temperature</h4>
   <div id="temperatureGraph"></div>
 </div>
+<div id="temperature">
+  <h4 id="temperatureTitle">Temperature</h4>
+  <div id="temperatureGraph"></div>
+</div>
   <script>
     data = <%= raw(@dados.to_json) %>;
-    sensorType = <%= raw(@sensorType.to_json)%>;
+    sensorType = <%= raw(@sensorName.to_json)%>;
     var map;
     function initMap() {
       var lalo = {lat: -30.0684214, lng: -51.120619};
@@ -83,21 +87,26 @@
 
 
 
-
-//FUNÇÕES PARA DESENHAR
-function fun1(x) {return Math.sin(x);  }
-function fun2(x) {return Math.cos(3*x);}
-
 function draw(markerPosition) {
   xaxis = ['x'];
   yaxis = [];
+
+  for (var i = 0, len = sensorType.length; i < len; i++) {
+        if(sensorType[i] == 'temperatura'){
+          var typeIndex = i;
+        }
+      }
+  
   for (var i = 0, len = data.length; i < len; i++) {
     var values = data[i][0]['localizacao'].split(' ');
     var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
     if( markerPosition.equals(dataPosition)){
-      console.log("entrei oloko")
-      var index = i;
-      break;
+      
+      if (sensorType[typeIndex]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[typeIndex]['id_sensor'] == data[i][0]['id_sensor']){
+          console.log("entrei oloko")
+          var index = i;
+          break;
+        }
     }
   }
 
