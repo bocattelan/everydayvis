@@ -32,9 +32,11 @@
 <div id="temperature">
   <h4 id="temperatureTitle">Temperature</h4>
   <div id="temperatureGraph"></div>
+</div>
   <script>
+    data = <%= raw(@dados.to_json) %>;
+    sensorType = <%= raw(@sensorType.to_json)%>;
     var map;
-     data = <%= raw(@dados.to_json) %>;
     function initMap() {
       var lalo = {lat: -30.0684214, lng: -51.120619};
       map = new google.maps.Map(document.getElementById('map'), {
