@@ -88,8 +88,10 @@ function draw(Markerposition) {
   xaxis = [];
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
-    console.log(Markerposition['lat'].toString() + ' ' + Markerposition['lng'].toString())
-    if(Markerposition['lat'].toString() + ' ' + Markerposition['lng'].toString() == data[i][0]['localizacao']){
+
+    markerPos = Markerposition['lat'].toString() + ' ' + Markerposition['lng'].toString();
+    console.log(markerPos)
+    if( markerPos == data[i][0]['localizacao']){
 
       var index = i;
       break;
