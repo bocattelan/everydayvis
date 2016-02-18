@@ -18,9 +18,8 @@ h1 Smada#Últimas 6 horas
         }
     }
     data.forEach(function(d) {
-      console.log(d['timestamp']);
       date = new Date(d['timestamp']);
-      date.setHours(date.getHours()+2);
+      //date.setHours(date.getHours()+2);
       xaxis.push(date);
       yaxis.push(+d['payload']);
     });
