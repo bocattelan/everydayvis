@@ -31,7 +31,7 @@
 </div>
   <script>
     var map;
-    var locations = <%= raw(@locations) %>;
+    var data = <%= @dados.to_json %>;
     function initMap() {
       var lalo = {lat: -30.0684214, lng: -51.120619};
       map = new google.maps.Map(document.getElementById('map'), {
@@ -134,10 +134,10 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 });
 
 
-    for (var i = 0, len = locations.length; i < len; i++) {
+    for (var i = 0, len = data.length; i < len; i++) {
 
 
-      var values = locations[i].split(' ');
+      var values = data[i][0]['localizacao'].split(' ');
 
       var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
       var marker = new google.maps.Marker({
