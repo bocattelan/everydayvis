@@ -90,7 +90,7 @@ function draw(markerPosition) {
   for (var i = 0, len = data.length; i < len; i++) {
 
     console.log(markerPosition.toString())
-    if( markerPosition.toString() == data[i][0]['localizacao']){
+    if( markerPosition.lat().toString() + ' ' + markerPosition.lng().toString() == data[i][0]['localizacao']){
 
       var index = i;
       break;
