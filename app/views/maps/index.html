@@ -85,7 +85,7 @@ function fun1(x) {return Math.sin(x);  }
 function fun2(x) {return Math.cos(3*x);}
 
 function draw(markerPosition) {
-  xaxis = [];
+  xaxis = ['x'];
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
     var values = data[i][0]['localizacao'].split(' ');
