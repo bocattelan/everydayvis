@@ -29,6 +29,7 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
+<div id="temperatureGraph"></div>
   <script>
     var map;
     var data = <%= raw(@dados.to_json) %>;
@@ -83,19 +84,40 @@
 function fun1(x) {return Math.sin(x);  }
 function fun2(x) {return Math.cos(3*x);}
 
-function draw() {
- var canvas = document.getElementById("canvas");
- if (null==canvas || !canvas.getContext) return;
-
- var axes={}, ctx=canvas.getContext("2d");
- axes.x0 = .5 + .5*canvas.width;  // x0 pixels from left to x=0
- axes.y0 = .5 + .5*canvas.height; // y0 pixels from top to y=0
- axes.scale = 40;                 // 40 pixels from x=0 to x=1
- axes.doNegativeX = true;
-
- showAxes(ctx,axes);
- funGraph(ctx,axes,fun1,"rgb(11,153,11)",1); 
- funGraph(ctx,axes,fun2,"rgb(66,44,255)",2);
+function draw(Markerposition) {
+  xaxis = [];
+  yaxis = [];
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(String(Markerposition['lat']) + String(Markerposition['lng']) == data[i][0]['localizacao']){
+      var index = i;
+      break;
+    }
+  data[index].forEach(function(d) {
+      date = new Date(d['timestamp']);
+      //date.setHours(date.getHours()+2);
+      xaxis.push(date);
+      yaxis.push(+d['payload']);
+    });
+ var chart = c3.generate({
+      bindto: d3.select("canvas"),
+      size: {
+        height: 180,
+        width: 4320
+      },
+      data: {
+        x: 'x',
+        columns: [xaxis, yaxis],
+        type: 'area'
+      },
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            format: '%d/%m/%y - %H:%M'
+          }
+        }
+      }
+    });
 }
 
 function funGraph (ctx,axes,func,color,thick) {
@@ -130,7 +152,7 @@ var infowindow = new google.maps.InfoWindow({
       });
 //Essa função só vai ser executada quando a infowindow for aberta
 google.maps.event.addListener(infowindow, 'domready', function() {
-  draw();
+  draw(infowindow.position);
 });
 
 
@@ -138,6 +160,7 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 
 
       var values = data[i][0]['localizacao'].split(' ');
+      var sensorName = data[i][0]['id_end_device']
 
       var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
       var marker = new google.maps.Marker({
