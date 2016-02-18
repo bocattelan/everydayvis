@@ -29,7 +29,9 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
-<div id="temperatureGraph"></div>
+<div id="temperature">
+  <h4 id="temperatureTitle">Temperature</h4>
+  <div id="temperatureGraph"></div>
   <script>
     var map;
      data = <%= raw(@dados.to_json) %>;
@@ -90,23 +92,20 @@ function draw(markerPosition) {
   for (var i = 0, len = data.length; i < len; i++) {
     var values = data[i][0]['localizacao'].split(' ');
     var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
-
-
-    console.log(markerPosition)
-    console.log(dataPosition)
     if( markerPosition.equals(dataPosition)){
       console.log("entrei oloko")
       var index = i;
       break;
     }
   }
+
   data[index].forEach(function(d) {
       date = new Date(d['timestamp']);
       //date.setHours(date.getHours()+2);
       xaxis.push(date);
       yaxis.push(+d['payload']);
-      console.log(yaxis)
     });
+
  var chart = c3.generate({
       bindto: document.getElementById("temperatureGraph"),
       size: {
