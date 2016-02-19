@@ -42,7 +42,9 @@
     sensorType = <%= raw(@sensorName.to_json)%>;
     var map;
     function initMap() {
-      var lalo = {lat: -30.0684214, lng: -51.120619};
+      //INF:
+      //var lalo = {lat: -30.0684214, lng: -51.120619};
+      var lalo = {lat: -27.548046, lng: -48.49798599999997};
       map = new google.maps.Map(document.getElementById('map'), {
         center: lalo,
         zoom: 16
