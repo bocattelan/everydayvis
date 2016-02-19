@@ -26,6 +26,10 @@ gem 'simple_form'
 gem 'draper', '~> 1.3'
 gem 'icalendar', '2.0'
 
+# performance
+gem 'rails-perftest'
+gem 'ruby-prof'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
