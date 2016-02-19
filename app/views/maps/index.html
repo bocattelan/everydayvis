@@ -57,7 +57,7 @@
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h3 id="firstHeading" class="firstHeading">This is a test</h3>'+
+      '<h3 id="infoWindowTitle" class="firstHeading">This is a test</h3>'+
       '<div id="bodyContent">'+
       '<p>This is the test</p>'+
 
@@ -194,10 +194,20 @@ function pressaoDraw(markerPosition){
 }
 
 
+
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
   pressaoDraw(markerPosition);
 }
+
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    document.getElementById("infoWindowTitle").innerHTML = results[0].name
+  }
+}
+
+
 
 var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -205,6 +215,13 @@ var infowindow = new google.maps.InfoWindow({
 //Essa função só vai ser executada quando a infowindow for aberta
 google.maps.event.addListener(infowindow, 'domready', function() {
   draw(infowindow.getPosition());
+  var request = {
+    location: infowindow.getPosition(),
+    radius: '500'
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
 });
 
 
