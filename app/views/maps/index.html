@@ -148,7 +148,7 @@ function pressaoDraw(markerPosition){
       var values = data[i][0]['localizacao'].split(' ');
       var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
       if( markerPosition.equals(dataPosition)){
-        console.log(sensorType)
+        //console.log(sensorType)
         console.log(data[i][0]['id_end_device'])
         console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
@@ -256,3 +256,4 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 }
   </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&callback=initMap" async defer></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&libraries=places"></script>
