@@ -57,7 +57,7 @@
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h3 id="infoWindowTitle" class="firstHeading">This is a test</h3>'+
+      '<h3 id="infoWindowTitle" class="firstHeading">No Name Available</h3>'+
       '<div id="infoWindowContent">'+
 
       //adicionei uma foto e um canvas
@@ -204,7 +204,7 @@ function draw(markerPosition) {
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     document.getElementById("infoWindowTitle").innerHTML = results[0].name
-    document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 1000});
+    document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 500});
   }
 }
 
@@ -227,7 +227,7 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 });
 
 //Ao fechar ela volta aos valores iniciais
-google.maps.event.addListener(infowindow, 'closeclick', function() {
+google.maps.event.addListener(infowindow, 'position_changed', function() {
   infowindow.setContent(contentString);
 });
 
