@@ -91,20 +91,22 @@ function draw(markerPosition) {
   xaxis = ['x'];
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
-    var values = data[i][0]['localizacao'].split(' ');
-    var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
-    if( markerPosition.equals(dataPosition)){
-      console.log(sensorType)
-      console.log(data[i][0]['id_end_device'])
-      console.log(data[i][0]['id_sensor'])
-      for (var j = 0, leng = sensorType.length; j < leng; j++) {
-        if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
-          console.log("entrei oloko")
-          var index = i;
-          break;
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        console.log(sensorType)
+        console.log(data[i][0]['id_end_device'])
+        console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          //if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
+            //console.log("entrei oloko")
+            var index = i;
+            break;
+          //}
         }
+        
       }
-      
     }
   }
 
