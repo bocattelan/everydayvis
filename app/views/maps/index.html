@@ -59,7 +59,6 @@
       '</div>'+
       '<h3 id="infoWindowTitle" class="firstHeading">This is a test</h3>'+
       '<div id="infoWindowContent">'+
-      '<p>This is the test</p>'+
 
       //adicionei uma foto e um canvas
       '<img id = "infowindowImage" >' +
@@ -221,6 +220,10 @@ google.maps.event.addListener(infowindow, 'domready', function() {
     location: infowindow.getPosition(),
     radius: '500'
   };
+//Ao fechar ela volta aos valores iniciais
+google.maps.event.addListener(infowindow, 'closeclick', function() {
+  infowindow.setContent(contentString);
+};
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
