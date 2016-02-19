@@ -33,9 +33,9 @@
   <h4 id="temperatureTitle">Temperature</h4>
   <div id="temperatureGraph"></div>
 </div>
-<div id="temperature">
-  <h4 id="temperatureTitle">Temperature</h4>
-  <div id="temperatureGraph"></div>
+<div id="pressure">
+  <h4 id="temperatureTitle">Atmospheric Pressure</h4>
+  <div id="pressureGraph"></div>
 </div>
   <script>
     data = <%= raw(@dados.to_json) %>;
@@ -84,10 +84,7 @@
 
       
 
-
-
-
-function draw(markerPosition) {
+function temperatureDraw(markerPosition){
   console.log(markerPosition.toString())
   xaxis = ['x'];
   yaxis = [];
@@ -138,6 +135,65 @@ function draw(markerPosition) {
         }
       }
     });
+}
+
+function pressaoDraw(markerPosition){
+  console.log(markerPosition.toString())
+  xaxis = ['x'];
+  yaxis = [];
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        console.log(sensorType)
+        console.log(data[i][0]['id_end_device'])
+        console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          //if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'pressao'){
+            //console.log("entrei oloko")
+            var index = i          + 1;
+            break;
+          //}
+        }
+        
+      }
+    }
+  }
+
+  data[index].forEach(function(d) {
+      date = new Date(d['timestamp']);
+      //date.setHours(date.getHours()+2);
+      xaxis.push(date);
+      yaxis.push(+d['payload']);
+    });
+
+ var chart = c3.generate({
+      bindto: document.getElementById("pressureGraph"),
+      size: {
+        height: 180,
+        width: 4320
+      },
+      data: {
+        x: 'x',
+        columns: [xaxis, yaxis],
+        type: 'area'
+      },
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            format: '%d/%m/%y - %H:%M'
+          }
+        }
+      }
+    });
+}
+
+
+function draw(markerPosition) {
+  temperatureDraw(markerPosition);
+  pressaoDraw(markerPosition);
 }
 
 var infowindow = new google.maps.InfoWindow({
