@@ -137,33 +137,6 @@ function draw(markerPosition) {
     });
 }
 
-function funGraph (ctx,axes,func,color,thick) {
- var xx, yy, dx=4, x0=axes.x0, y0=axes.y0, scale=axes.scale;
- var iMax = Math.round((ctx.canvas.width-x0)/dx);
- var iMin = axes.doNegativeX ? Math.round(-x0/dx) : 0;
- ctx.beginPath();
- ctx.lineWidth = thick;
- ctx.strokeStyle = color;
-
- for (var i=iMin;i<=iMax;i++) {
-  xx = dx*i; yy = scale*func(xx/scale);
-  if (i==iMin) ctx.moveTo(x0+xx,y0-yy);
-  else         ctx.lineTo(x0+xx,y0-yy);
- }
- ctx.stroke();
-}
-
-function showAxes(ctx,axes) {
- var x0=axes.x0, w=ctx.canvas.width;
- var y0=axes.y0, h=ctx.canvas.height;
- var xmin = axes.doNegativeX ? 0 : x0;
- ctx.beginPath();
- ctx.strokeStyle = "rgb(128,128,128)"; 
- ctx.moveTo(xmin,y0); ctx.lineTo(w,y0);  // X axis
- ctx.moveTo(x0,0);    ctx.lineTo(x0,h);  // Y axis
- ctx.stroke();
-}
-//FIM DAS FUNÇÕES PARA DESENHAR
 var infowindow = new google.maps.InfoWindow({
         content: contentString
       });
@@ -175,27 +148,28 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 
     for (var i = 0, len = data.length; i < len; i++) {
 
+      if(data[i] != undefined){
+        var values = data[i][0]['localizacao'].split(' ');
+        var sensorName = data[i][0]['id_end_device']
 
-      var values = data[i][0]['localizacao'].split(' ');
-      var sensorName = data[i][0]['id_end_device']
-
-      var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
-      var marker = new google.maps.Marker({
-        position: lalo,
-        map: map,
-        title: 'Stuffy stuff',
-        infowindow: infowindow,
-        //icone direto por URL
-       // icon: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9'
-       //icone usando o dicionario
-        icon: icons['library'].icon
-      });
+        var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
+        var marker = new google.maps.Marker({
+          position: lalo,
+          map: map,
+          title: 'Stuffy stuff',
+          infowindow: infowindow,
+          //icone direto por URL
+         // icon: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9'
+         //icone usando o dicionario
+          icon: icons['library'].icon
+        });
 
 
-      google.maps.event.addListener(marker, 'click', function() {
-        this.infowindow.open(map, this); 
-      });
-    }
+        google.maps.event.addListener(marker, 'click', function() {
+          this.infowindow.open(map, this); 
+        });
+      }
+   }
   }
 
 
