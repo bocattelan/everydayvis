@@ -148,7 +148,7 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 
     for (var i = 0, len = data.length; i < len; i++) {
 
-      if(data[i] != undefined){
+      if(data[i][0] != undefined){
         var values = data[i][0]['localizacao'].split(' ');
         var sensorName = data[i][0]['id_end_device']
 
