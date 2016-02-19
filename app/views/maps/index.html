@@ -109,34 +109,35 @@ function temperatureDraw(markerPosition){
       }
     }
   }
+  if(data[index] != undefined){
+    data[index].forEach(function(d) {
+        date = new Date(d['timestamp']);
+        //date.setHours(date.getHours()+2);
+        xaxis.push(date);
+        yaxis.push(+d['payload']);
+      });
 
-  data[index].forEach(function(d) {
-      date = new Date(d['timestamp']);
-      //date.setHours(date.getHours()+2);
-      xaxis.push(date);
-      yaxis.push(+d['payload']);
-    });
-
- var chart = c3.generate({
-      bindto: document.getElementById("temperatureGraph"),
-      size: {
-        height: 180,
-        width: 4320
-      },
-      data: {
-        x: 'x',
-        columns: [xaxis, yaxis],
-        type: 'area'
-      },
-      axis: {
-        x: {
-          type: 'timeseries',
-          tick: {
-            format: '%d/%m/%y - %H:%M'
+   var chart = c3.generate({
+        bindto: document.getElementById("temperatureGraph"),
+        size: {
+          height: 180,
+          width: 4320
+        },
+        data: {
+          x: 'x',
+          columns: [xaxis, yaxis],
+          type: 'area'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%d/%m/%y - %H:%M'
+            }
           }
         }
-      }
-    });
+      });
+  }
 }
 
 function pressaoDraw(markerPosition){
