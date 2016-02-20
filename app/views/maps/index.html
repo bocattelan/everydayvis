@@ -27,6 +27,9 @@
   line-height: 30px;
   padding-left: 10px;
 }
+#graphs{
+  float: bottom;
+}
 </style>
 
 <div id="map"></div>
@@ -35,13 +38,15 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
-<div id="temperature">
-  <h4 id="temperatureTitle">Temperature</h4>
-  <div id="temperatureGraph"></div>
-</div>
-<div id="pressure">
-  <h4 id="temperatureTitle">Atmospheric Pressure</h4>
-  <div id="pressureGraph"></div>
+<div id="graphs">
+  <div id="temperature">
+    <h4 id="temperatureTitle">Temperature</h4>
+    <div id="temperatureGraph"></div>
+  </div>
+  <div id="pressure">
+    <h4 id="temperatureTitle">Atmospheric Pressure</h4>
+    <div id="pressureGraph"></div>
+  </div>
 </div>
   <script>
     data = <%= raw(@dados.to_json) %>;
