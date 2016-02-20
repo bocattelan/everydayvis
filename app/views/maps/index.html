@@ -1,5 +1,7 @@
 <style>
-
+#principal{
+  display:inline-block;
+}
 #map{
   position: relative;
     top: 50;
@@ -8,7 +10,7 @@
     bottom: 0;
   width: 50%;
   height: 500px;
-  display:inline-block;
+  
   
 }
 #clock{
@@ -29,9 +31,10 @@
   padding-left: 10px;
 }
 </style>
-
-<div id="map"></div>
-<img id="clock" src="/relogioFinal.png">
+<div id="principal">
+  <div id="map"></div>
+  <img id="clock" src="/relogioFinal.png">
+</div>
 <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
