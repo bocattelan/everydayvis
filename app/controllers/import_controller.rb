@@ -73,8 +73,8 @@ class ImportController < ApplicationController
       end
 
       person.save!
-      activity.save!
-      luminosity.save!
+      Activity.save!
+      Luminosity.save!
       File.delete(Rails.root.join('public','uploads',uploaded_io.original_filename))
     end
   end
