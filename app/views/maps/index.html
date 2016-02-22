@@ -40,7 +40,9 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
-<input type="checkbox" name="checkBox1" onclick="showData('graphs')"> Show Full Data
+
+<input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
+
 <div id="graphs">
   <div id="temperature">
     <h4 id="temperatureTitle">Temperature</h4>
@@ -54,13 +56,10 @@
   <script>
   function showData (box) {
         
-        var chboxs = document.getElementsByName("checkBox1");
+        var chboxs = document.getElementById("checkBox1");
         var vis = "none";
             if(chboxs.checked){
              vis = "block";
-            }
-            else{
-              vis = "none";
             }
         document.getElementById(box).style.display = vis;
     
