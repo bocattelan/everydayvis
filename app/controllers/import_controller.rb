@@ -37,6 +37,7 @@ class ImportController < ApplicationController
             puts "LINHA"
             puts $.
             print row
+            @linha = row
               if dd.length > 1 and tt.length > 1
                 datetime = Time.zone.local(dd[2].to_i, dd[1].to_i, dd[0].to_i,tt[0].to_i, tt[1].to_i, tt[2].to_i)
 
