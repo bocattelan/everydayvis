@@ -30,31 +30,33 @@ class ImportController < ApplicationController
       relevant_stuff = false
       CSV.foreach(file_name) do |row|
         if relevant_stuff
-          next unless row[0] and row[0] == ''
-          dd = row[1].split('/')
-          tt = row[2].split(':')
-          puts "LINHA"
-          puts $.
-          print row
-            if dd.length > 1
-              datetime = Time.zone.local(dd[2].to_i, dd[1].to_i, dd[0].to_i,tt[0].to_i, tt[1].to_i, tt[2].to_i)
-            else
-              datetime = Time.at(row[1].to_i + row[2].to_i).to_datetime
-            end
+          #next 
+          unless row[0].nil? or row[0] == ''
+            dd = row[1].split('/')
+            tt = row[2].split(':')
+            puts "LINHA"
+            puts $.
+            print row
+              if dd.length > 1 and tt.length > 1
+                datetime = Time.zone.local(dd[2].to_i, dd[1].to_i, dd[0].to_i,tt[0].to_i, tt[1].to_i, tt[2].to_i)
 
-          activity = row[3].to_i
-          light = row[5].to_f
+              else
+                datetime = Time.at(row[1].to_i + row[2].to_i).to_datetime
+              end
+            activity = row[3].to_i
+            light = row[5].to_f
 
-          Activity.create!({
-            person: person,
-            datetime: datetime,
-            activity: activity,
-          })
-          Luminosity.create!({
-            person: person,
-            datetime: datetime,
-            light: light,
-          })
+            Activity.create!({
+              person: person,
+              datetime: datetime,
+              activity: activity,
+            })
+            Luminosity.create!({
+              person: person,
+              datetime: datetime,
+              light: light,
+            })
+          end
         elsif row.join(',').start_with? "Code"
           person.code = row[1]
         elsif row.join(',').start_with? "Identity"
