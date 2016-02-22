@@ -30,7 +30,7 @@ class ImportController < ApplicationController
       relevant_stuff = false
       CSV.foreach(file_name) do |row|
         if relevant_stuff
-          next if row[0] and row[0] == ''
+          unless row[0] and row[0] == ''
           dd = row[1].split('/')
           tt = row[2].split(':')
           puts "LINHA"
