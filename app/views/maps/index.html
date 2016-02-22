@@ -1,22 +1,17 @@
 <style>
 
+#mapClock{
+  display: -webkit-flex;
+  display: flex;
+}
+
+
 #map{
-  position: relative;
-    top: 50;
-    left: 0;
-    right: 0;
-    bottom: 0;
   width: 50%;
   height: 500px;
-  display: inline-block;
+
 }
 #clock{
-  position: relative;
-  top: -150;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  display: inline-block;
 }
 #floating-panel {
   position: absolute;
@@ -32,12 +27,13 @@
   padding-left: 10px;
 }
 #graphs{
-  bottom: 0px;
+
 }
 </style>
-
+<div id="mapClock">
 <div id="map"></div>
 <img id="clock" src="/relogioFinal.png">
+</div>
 <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
