@@ -215,8 +215,9 @@ function draw(markerPosition) {
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    document.getElementById("infoWindowTitle").innerHTML = results[results.length -1].name
-    document.getElementById("infowindowImage").src = results[results.length-1].photos[0].getUrl(opts={maxHeight: 250});
+    document.getElementById("infoWindowTitle").innerHTML = results[0].name
+    document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 250});
+    console.log(results)
   }
 }
 
