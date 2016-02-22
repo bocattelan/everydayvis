@@ -39,6 +39,7 @@
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
 </div>
+<input type="checkbox" name="checkBox1" onclick="showData('graphs')"> Show Full Data
 <div id="graphs">
   <div id="temperature">
     <h4 id="temperatureTitle">Temperature</h4>
@@ -50,6 +51,23 @@
   </div>
 </div>
   <script>
+  function showData (box) {
+        
+        var chboxs = document.getElementsByName("checkBox1");
+        var vis = "none";
+            if(chboxs.checked){
+             vis = "block";
+            }
+        document.getElementById(box).style.display = vis;
+    
+    
+    }
+
+
+
+
+
+
     data = <%= raw(@dados.to_json) %>;
     sensorType = <%= raw(@sensorName.to_json)%>;
     var map;
