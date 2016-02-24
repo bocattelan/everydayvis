@@ -3,7 +3,6 @@ class CreateSleepJawbones < ActiveRecord::Migration
     create_table :sleep_jawbones do |t|
       t.datetime :datetime
       t.integer :depth
-      t.string :person
       t.references :person, index: true
 
       t.timestamps null: false
