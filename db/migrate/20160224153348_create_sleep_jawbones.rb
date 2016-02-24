@@ -4,7 +4,7 @@ class CreateSleepJawbones < ActiveRecord::Migration
       t.datetime :datetime
       t.integer :depth
       t.string :person
-      t.string :references
+      t.references :person, index: true
 
       t.timestamps null: false
     end
