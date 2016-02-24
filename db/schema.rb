@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128233954) do
+ActiveRecord::Schema.define(version: 20160224153348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20160128233954) do
     t.string   "fitbit_token"
     t.string   "foursquare_token"
   end
+
+  create_table "sleep_jawbones", force: :cascade do |t|
+    t.datetime "datetime"
+    t.integer  "depth"
+    t.string   "person"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sleep_jawbones", ["person_id"], name: "index_sleep_jawbones_on_person_id", using: :btree
 
   create_table "smadas", force: :cascade do |t|
     t.datetime "created_at", null: false
