@@ -322,31 +322,33 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
         } else {
-          index = index + 1
-          //console.log(index)
-          var value = 0
-          var hasSleep = false
-          console.log(d3.selectAll("path"))
-          for(i=0;i<data.sleep_jawbones.length;i++){
-            var horario = new Date((data.sleep_jawbones[i].datetime))
-            if(horario.getHours() == index){
-              var value = activity_scale(max_activity)
-              //console.log(index)
-              var slice = d3.select(this)
-              slice.style('fill', 'red')
+            
+            //console.log(index)
+            var value = 0
+            var hasSleep = false
+            console.log(d3.selectAll("path"))
+            for(i=0;i<data.sleep_jawbones.length;i++){
+              var horario = new Date((data.sleep_jawbones[i].datetime))
+              if(horario.getHours() == index){
+                var value = activity_scale(max_activity)
+                //console.log(index)
+                var slice = d3.select(this)
+                slice.style('fill', 'red')
 
-              sleepNodes.push(index)
-              console.log(horario.getHours())
-              break;
-              hasSleep;
+                sleepNodes.push(index)
+                console.log(horario.getHours())
+                index = index + 1
+                hasSleep;
+                break;
+                
+              }
             }
           }
-          
           if(!hasSleep){
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
           }
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
-        }
+        
       });
 
   var activityOutlineArc = d3.svg.arc()
