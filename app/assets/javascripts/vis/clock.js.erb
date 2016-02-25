@@ -334,7 +334,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
               hasSleep;
             }
           }
-
+          var value = 0
           if(!hasSleep){
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
           }
