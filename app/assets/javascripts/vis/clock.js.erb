@@ -351,10 +351,11 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         
       });
-console.log(d3.selectAll("path"))
+
   var activityOutlineArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius);
+console.log(d3.selectAll("path"))
 /*
   for(i=0;i<sleepNodes.length;i++){
     slices = d3.selectAll("path");
