@@ -323,7 +323,19 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
         } else {
           index = index + 1
           console.log(index)
-          var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
+
+          var hasSleep = false
+          for(i=0;i<data.sleep_jawbones.length;i++){
+            if(data.sleep_jawbones.datetime.getHours() == index){
+              var value = max_activity
+              break;
+              hasSleep;
+            }
+          }
+
+          if(!hasSleep){
+            var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
+          }
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         }
       });
