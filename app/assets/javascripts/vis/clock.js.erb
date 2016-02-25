@@ -370,6 +370,7 @@ SleepArc.prototype.validate = function(data) {
     this._active = false;
     console.log("data.sleep_jawbones não é valido")
   } else {
+    console.log(data.sleep_jawbones)
     for (var i = 0; i < data.sleep_jawbones.length; i++) {
       dd = data.sleep_jawbones[i];
       dd.start = new Date(dd.start);
@@ -383,38 +384,43 @@ SleepArc.prototype.validate = function(data) {
 
 
 SleepArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
-  var work_scale = d3.scale.linear().domain([0, 1440]).range([0, 360]);
+  var max_activity = d3.max(data.activities, function(d) { return d.activity; });
+  if ($('.clocks-relative-to-all').is(":checked")) {
+    max_activity = max_selected_activity;
+  }
+  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([0, 100]);
 
-  var workArc = d3.svg.arc()
+  var pie = d3.layout.pie()
+      .sort(null)
+      .value(function(d) { return 1; });
+
+  var activityArc = 100
+
+  var activityOutlineArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius);
 
-  var workSvg = svg.append("g")
-      .attr("class", "sleep-arc")
+  var activitySvg = svg.append("g")
+      .attr("class", "activity-arc")
       .attr("transform", "translate(" + this._clock._size / 2 + "," + this._clock._size / 2 + ")");
 
+  var path = activitySvg.selectAll(".solid-arc")
+      .data(pie(data.activities))
+    .enter().append("path")
+      .attr("class", "solid-arc")
+      .attr("d", activityArc);
+
   var clock = this._clock;
-
-  for (var i = 0; i < data.works.length; i++) {
-    work = data.sleep_jawbones[i];
-    var workStartAngle = work_scale(work.start.getHours() * 60 + work.start.getMinutes()) * Math.PI / 180;
-    var workEndAngle = work_scale(work.finish.getHours() * 60 + work.finish.getMinutes()) * Math.PI / 180;
-    if (workStartAngle > workEndAngle) {
-      workEndAngle += 6.28319; // 360 degrees
-    }
-
-    var dayPath = workSvg.append("path")
-        .attr("class", "work-slice")
-        .attr("data-ttip", work.name + ": " + work.time_spent / 60000 + " min")
-        .attr("fill", function(d) { return work.color; })
-        .attr("d", workArc.startAngle(function(d) {
-                            return workStartAngle;
-                          }).endAngle(function(d) {
-                            return workEndAngle;
-                          }))
-        .on("mouseover", function(d) { clock.arcMouseOn($(this).data("ttip")); })
-        .on("mouseout", function(d) { clock.arcMouseOut(); });
-  }
+  var outerPath = activitySvg.selectAll(".outline-arc")
+      .data(pie(data.activities))
+    .enter().append("path")
+      .attr("class", "outline-arc interaction-path")
+      .attr("d", activityOutlineArc)
+      .attr("stroke-width", function(d) { return d.data.ev ? '4px' : '2px' })
+      .attr("stroke", function(d) { return d.data.ev ? '#444' : 'black' })
+      .on("mouseover", function(d) { clock.arcMouseOn("Activity " + d.data.activity); })
+      .on("mouseout", function(d) { clock.arcMouseOut(); })
+      .on("mousedown", function(d, i) { clock.arcMouseClick(this, i + 1); });
 }
 
 
