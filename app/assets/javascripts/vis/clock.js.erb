@@ -313,6 +313,17 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
       .sort(null)
       .value(function(d) { return 1; });
 
+  function checkSleep(datetime){
+    for(i=0;i<data.sleep_jawbones.length;i++){
+      if(datetime.equals(data.sleep_jawbones[i].datetime)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
@@ -320,9 +331,16 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
         } else {
-          var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : 100
-          return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
-        }
+            if (checkSleep(d.data.activity.datetime)){
+              console.log('temos um sono')
+              var value = max_activity;
+              return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
+            }
+            else{
+              var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
+              return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
+            }
+          }
       });
 
   var activityOutlineArc = d3.svg.arc()
