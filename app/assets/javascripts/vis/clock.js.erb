@@ -349,6 +349,77 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
       .on("mouseout", function(d) { clock.arcMouseOut(); })
       .on("mousedown", function(d, i) { clock.arcMouseClick(this, i + 1); });
 }
+///////////////////////////////////////////////////////////////////////
+// Sleep Arc
+///////////////////////////////////////////////////////////////////////
+function SleepArc(clock) {
+  this._clock = clock;
+  this._active = true;
+  this._width = 0.3;
+}
+
+SleepArc.prototype.colorFor = function(depth) {
+  if (depth === 2) return "#e5e600";
+  else if (depth === 3) return "#339966";
+  else return "#ffffff";
+}
+
+SleepArc.prototype.validate = function(data) {
+  if (!data.sleeps) {
+    this._active = false;
+  } else {
+    for (var i = 0; i < data.sleeps.length; i++) {
+      dd = data.sleeps[i];
+      dd.start = new Date(dd.start);
+      dd.finish = new Date(dd.finish);
+      dd.time_spent = dd.finish - dd.start;
+      dd.color = this.colorFor(dd.name);
+    };
+  }
+  return this._active;
+}
+
+
+SleepArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
+  var work_scale = d3.scale.linear().domain([0, 1440]).range([0, 360]);
+
+  var workArc = d3.svg.arc()
+      .innerRadius(innerRadius)
+      .outerRadius(outerRadius);
+
+  var workSvg = svg.append("g")
+      .attr("class", "sleep-arc")
+      .attr("transform", "translate(" + this._clock._size / 2 + "," + this._clock._size / 2 + ")");
+
+  var clock = this._clock;
+
+  for (var i = 0; i < data.works.length; i++) {
+    work = data.sleeps[i];
+    var workStartAngle = work_scale(work.start.getHours() * 60 + work.start.getMinutes()) * Math.PI / 180;
+    var workEndAngle = work_scale(work.finish.getHours() * 60 + work.finish.getMinutes()) * Math.PI / 180;
+    if (workStartAngle > workEndAngle) {
+      workEndAngle += 6.28319; // 360 degrees
+    }
+
+    var dayPath = workSvg.append("path")
+        .attr("class", "work-slice")
+        .attr("data-ttip", work.name + ": " + work.time_spent / 60000 + " min")
+        .attr("fill", function(d) { return work.color; })
+        .attr("d", workArc.startAngle(function(d) {
+                            return workStartAngle;
+                          }).endAngle(function(d) {
+                            return workEndAngle;
+                          }))
+        .on("mouseover", function(d) { clock.arcMouseOn($(this).data("ttip")); })
+        .on("mouseout", function(d) { clock.arcMouseOut(); });
+  }
+}
+
+
+
+
+
+
 
 /////////////////////////////////////////////////
 // Work Arc
