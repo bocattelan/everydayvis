@@ -35,6 +35,7 @@ class Person < ActiveRecord::Base
 
   def on_date_sleep(datetime)
     sleep_jawbones.where("datetime BETWEEN ? AND ?", datetime, datetime + 1.day - 1.second).order("datetime ASC")
+  end
   def monthly
     days = []
 
