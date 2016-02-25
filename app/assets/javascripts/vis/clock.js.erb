@@ -323,6 +323,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
         } else {
           index = index + 1
           //console.log(index)
+          var value = 0
           var hasSleep = false
           for(i=0;i<data.sleep_jawbones.length;i++){
             var horario = new Date((data.sleep_jawbones[i].datetime))
@@ -334,7 +335,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
               hasSleep;
             }
           }
-          var value = 0
+          
           if(!hasSleep){
             //var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
           }
