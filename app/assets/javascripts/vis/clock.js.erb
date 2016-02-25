@@ -16,6 +16,7 @@ function Clock() {
   this._arcs = [
     new SunArc(this),
     new LuminosityArc(this),
+    new SleepArc(this),
     new ActivityArc(this),
     new WorkArc(this)
   ];
@@ -367,6 +368,7 @@ SleepArc.prototype.colorFor = function(depth) {
 SleepArc.prototype.validate = function(data) {
   if (!data.sleep_jawbones) {
     this._active = false;
+    console.log("data.sleep_jawbones não é valido")
   } else {
     for (var i = 0; i < data.sleep_jawbones.length; i++) {
       dd = data.sleep_jawbones[i];
