@@ -326,7 +326,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
 
           var hasSleep = false
           for(i=0;i<data.sleep_jawbones.length;i++){
-            if(data.sleep_jawbones.datetime.getHours() == index){
+            if(data.sleep_jawbones['datetime'].getHours() == index){
               var value = max_activity
               break;
               hasSleep;
