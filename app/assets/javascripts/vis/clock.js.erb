@@ -33,7 +33,6 @@ function Clock() {
 Clock.prototype.preprocess = function(data) {
   if (data.size) this._size = data.size;
   if (data.margin) this._margin = data.margin;
-  console.log(data.margin)
 
   this._elid = data.date.substr(0, 10);
   data.date = new Date(data.date);
@@ -84,6 +83,7 @@ Clock.prototype.draw = function(element, data) {
       continue;
     }
     var innerRadius = this._radius * (1 - arc._width) - walkedRadius;
+    console.log(data)
     arc.draw(svg, data, outerRadius, innerRadius)
     outerRadius = innerRadius;
     walkedRadius += this._radius - innerRadius;
