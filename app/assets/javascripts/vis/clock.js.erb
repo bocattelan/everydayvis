@@ -308,7 +308,8 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
     max_activity = max_selected_activity;
   }
   var activity_scale = d3.scale.linear().domain([0, max_activity]).range([0, 100]);
-
+  console.log(data.sleep_jawbones)
+  console.log(data.activity)
   var pie = d3.layout.pie()
       .sort(null)
       .value(function(d) { return 1; });
@@ -316,8 +317,6 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
-        console.log(data.sleep_jawbones)
-        console.log(data.activity)
         if (d.data.activity == "sleep") {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
