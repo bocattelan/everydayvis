@@ -33,6 +33,7 @@ function Clock() {
 Clock.prototype.preprocess = function(data) {
   if (data.size) this._size = data.size;
   if (data.margin) this._margin = data.margin;
+  console.log(data.margin)
 
   this._elid = data.date.substr(0, 10);
   data.date = new Date(data.date);
@@ -308,8 +309,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
     max_activity = max_selected_activity;
   }
   var activity_scale = d3.scale.linear().domain([0, max_activity]).range([0, 100]);
-  console.log(data.sleep_jawbones)
-  console.log(data.activity)
+
   var pie = d3.layout.pie()
       .sort(null)
       .value(function(d) { return 1; });
