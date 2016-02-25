@@ -320,7 +320,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
         } else {
-          var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (100.0) : d.data.activity
+          var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (1000.0) : d.data.activity
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         }
       });
