@@ -83,7 +83,7 @@ Clock.prototype.draw = function(element, data) {
       continue;
     }
     var innerRadius = this._radius * (1 - arc._width) - walkedRadius;
-    console.log(data)
+    //console.log(data)
     arc.draw(svg, data, outerRadius, innerRadius)
     outerRadius = innerRadius;
     walkedRadius += this._radius - innerRadius;
@@ -313,7 +313,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   var pie = d3.layout.pie()
       .sort(null)
       .value(function(d) { return 1; });
-
+  var index = 0
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
@@ -321,6 +321,8 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
         } else {
+          index = index + 1
+          console.log(index)
           var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         }
