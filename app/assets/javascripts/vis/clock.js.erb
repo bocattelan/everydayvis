@@ -316,7 +316,8 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
-        console.log(d.data.sleep_jawbones)
+        console.log(data.sleep_jawbones)
+        console.log(data.activity)
         if (d.data.activity == "sleep") {
           return  (outerRadius - innerRadius) * (activity_scale(max_activity) / 100.0) + innerRadius;
           console.log("entrei no sono")
