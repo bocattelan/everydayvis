@@ -314,6 +314,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
       .sort(null)
       .value(function(d) { return 1; });
   var index = 0
+  var sleepNodes = []
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
@@ -331,6 +332,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             if(horario.getHours() == index){
               var value = activity_scale(max_activity)
               //console.log(index)
+              sleepNodes.push(index)
               console.log(horario.getHours())
               break;
               hasSleep;
@@ -347,6 +349,11 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   var activityOutlineArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius);
+
+  for(i=0;i<sleepNodes.length;i++){
+    slices = d3.selectAll("path");
+    slices[sleepNodes[i] + 2].style("fill", "red");
+  }
 
   var activitySvg = svg.append("g")
       .attr("class", "activity-arc")
