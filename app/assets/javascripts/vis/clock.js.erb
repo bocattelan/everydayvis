@@ -326,7 +326,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           var hasSleep = false
           for(i=0;i<data.sleep_jawbones.length;i++){
             var horario = new Date(data.sleep_jawbones.datetime)
-            console.log(horario.getHours)
+            console.log(horario.getHours())
             if(horario.getHours() == index){
               var value = max_activity
               break;
