@@ -326,7 +326,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             //console.log(index)
             var value = 0
             var hasSleep = false
-            //console.log(d3.selectAll("path"))
+            console.log(d3.selectAll("path"))
             for(i=0;i<data.sleep_jawbones.length;i++){
               var horario = new Date((data.sleep_jawbones[i].datetime))
               if(horario.getHours() == index){
@@ -355,7 +355,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   var activityOutlineArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius);
-console.log(d3.selectAll("path"))
+//console.log(d3.selectAll("path"))
 /*
   for(i=0;i<sleepNodes.length;i++){
     slices = d3.selectAll("path");
