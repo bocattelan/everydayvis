@@ -573,6 +573,7 @@ TextArc.prototype.draw = function(svg, date) {
       .data(hours)
     .enter().append("text")
       .attr("class", "clock-label")
+      .style("fill", fontColor)
       .attr("x", function(d) {
         return radiusPercent * Math.cos((degrees * d) + (degrees / 2) - 1.5708) - textOffset;
       })
