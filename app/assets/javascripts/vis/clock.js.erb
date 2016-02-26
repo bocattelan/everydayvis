@@ -348,7 +348,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
 
                   depthTotal = depthTotal + data.sleep_jawbones[i].depth;
 
-                  //hasSleep;
+                  hasSleep = true;
                   //break
                   
                 }
@@ -358,7 +358,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   var slice = d3.select(this);
                   slice.style('fill', sleepColor(round(depthTotal)));
                   depthTotal = 0;
-
+                  hasSleep = false
                 }
               i++;
               }
