@@ -347,7 +347,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   //var slice = d3.select(this)
                   //slice.style('fill', 'red')
                   console.log(horario.getHours())
-                  index = index + 1;
+                  
                   depthNumber = depthNumber + 1;
                   depthTotal = depthTotal + data.sleep_jawbones[i].depth;
 
@@ -369,10 +369,11 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   var slice = d3.select(this);
                   slice.style('fill', sleepColor(Math.round(depthAverage)));
                   hasSleep = false
-                  //break;
+                  break;
                 }
               i++;
               }
+            index = index + 1;
           }
           if(!hasSleep){
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
