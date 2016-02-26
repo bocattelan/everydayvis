@@ -308,7 +308,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   if ($('.clocks-relative-to-all').is(":checked")) {
     max_activity = max_selected_activity;
   }
-  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([0, 100]);
+  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([10, 100]);
 
   var pie = d3.layout.pie()
       .sort(null)
