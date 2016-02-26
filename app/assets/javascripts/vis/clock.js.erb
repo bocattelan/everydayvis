@@ -392,6 +392,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           }
         }
           if(!hasSleep){
+            var slice = d3.select(this);
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
             slice.style('fill', '#3182bd');
           }
