@@ -336,6 +336,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             //for(i=0;i<data.sleep_jawbones.length;i++){
               while(i < data.sleep_jawbones.length)
               {
+                var depthNumber = 0;
                 var horario = new Date((data.sleep_jawbones[i].datetime))
                 if(horario.getHours() == index)
                 {
@@ -345,7 +346,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   //slice.style('fill', 'red')
                   console.log(horario.getHours())
                   index = index + 1;
-
+                  depthNumber = depthNumber + 1;
                   depthTotal = depthTotal + data.sleep_jawbones[i].depth;
 
                   hasSleep = true;
@@ -353,11 +354,12 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   
                 }
                 else if (hasSleep){
-                  var depthAverage = depthTotal/index;
+                  var depthAverage = depthTotal/depthNumber;
                   console.log(depthAverage)
                   var slice = d3.select(this);
                   slice.style('fill', sleepColor(Math.round(depthTotal)));
                   depthTotal = 0;
+                  depthNumber = 0;
                   hasSleep = false
                 }
               i++;
