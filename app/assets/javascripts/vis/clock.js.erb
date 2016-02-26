@@ -325,7 +325,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
         } else 
           {
             if(data.sleep_jawbones){
-            var sleepColor = d3.scale.linear().domain([1,2,3]).range(["#17becf", "#aec7e8", "#9467bd"]);
+            var sleepColor = d3.scale.linear().domain([1,2,3]).range(["#6baed6", "#9ecae1", "#c6dbef"]);
             
             //console.log(index)
             var value = 0
@@ -393,6 +393,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
         }
           if(!hasSleep){
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
+            slice.style('fill', '#3182bd';
           }
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         
