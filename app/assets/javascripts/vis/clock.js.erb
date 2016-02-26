@@ -333,10 +333,11 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             //console.log(d3.selectAll("path"))
             var i = 0;
             //for(i=0;i<data.sleep_jawbones.length;i++){
+              var depthNumber = 0;
+              var depthTotal = 0;
               while(i < data.sleep_jawbones.length)
               {
-                var depthNumber = 0;
-                var depthTotal = 0;
+
                 var horario = new Date((data.sleep_jawbones[i].datetime))
                 if(horario.getHours() == index)
                 {
