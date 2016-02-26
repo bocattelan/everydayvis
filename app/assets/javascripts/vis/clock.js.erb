@@ -586,6 +586,7 @@ TextArc.prototype.draw = function(svg, date) {
     .attr("class", "clock-date")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
+    .attr("fill", "black")
     .attr("transform", "translate(" + this._clock._size / 2 + "," + this._clock._size / 2.3 + ")")
     .text(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
 }
