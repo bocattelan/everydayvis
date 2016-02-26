@@ -355,7 +355,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   //break
                   
                 }
-                else if ((i==data.sleep_jawbones.length-1 && horario.getHours() == index) || hasSleep)
+                else if (hasSleep)
                 {
                   if (depthNumber!=0)
                   {
@@ -372,6 +372,21 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   break;
                 }
               i++;
+              }
+              if(i==data.sleep_jawbones.length-1 && horario.getHours() == index)
+              {
+                if (depthNumber!=0)
+                  {
+                    depthAverage = depthTotal/depthNumber;
+                  }
+                  else
+                  {
+                    depthAverage = 1;
+                  }
+                  console.log(depthAverage)
+                  var slice = d3.select(this);
+                  slice.style('fill', sleepColor(Math.round(depthAverage)));
+                  hasSleep = false
               }
             index = index + 1;
           }
