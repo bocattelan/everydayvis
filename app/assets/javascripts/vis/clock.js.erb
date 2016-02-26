@@ -355,7 +355,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   //break
                   
                 }
-                else if (hasSleep)
+                else if ((i==data.sleep_jawbones.length-1 && horario.getHours() == index) || hasSleep)
                 {
                   if (depthNumber!=0)
                   {
