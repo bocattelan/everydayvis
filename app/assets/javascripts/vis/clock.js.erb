@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////
 // Clock
 /////////////////////////////////////////////////
-
+var fontColor = "black"
 var week_day = [
   "Sunday",
   "Monday",
@@ -563,6 +563,7 @@ TextArc.prototype.draw = function(svg, date) {
   var hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
   var textSvg = svg.append("g")
       .attr("class", "text-arc")
+      .style("fill", fontColor)
       .attr("transform", "translate(" + this._clock._size / 2 + "," + this._clock._size / 2 + ")");
 
   var degrees = 15 * Math.PI / 180;
@@ -586,7 +587,7 @@ TextArc.prototype.draw = function(svg, date) {
     .attr("class", "clock-date")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
-    .style("fill", "black")
+    .style("fill", fontColor)
     .attr("transform", "translate(" + this._clock._size / 2 + "," + this._clock._size / 2.3 + ")")
     .text(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
 }
