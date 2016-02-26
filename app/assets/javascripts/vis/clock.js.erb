@@ -366,7 +366,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   }
                   console.log(depthAverage)
                   var slice = d3.select(this);
-                  slice.style('fill', sleepColor(Math.round(depthTotal)));
+                  slice.style('fill', sleepColor(Math.round(depthAverage)));
                   depthTotal = 0;
                   depthNumber = 0;
                   hasSleep = false
