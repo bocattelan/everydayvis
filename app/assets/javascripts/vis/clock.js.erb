@@ -308,7 +308,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   if ($('.clocks-relative-to-all').is(":checked")) {
     max_activity = max_selected_activity;
   }
-  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([10, 100]);
+  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([5, 100]);
 
   var pie = d3.layout.pie()
       .sort(null)
@@ -327,23 +327,26 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             var value = 0
             var hasSleep = false
             console.log(d3.selectAll("path"))
-            for(i=0;i<data.sleep_jawbones.length;i++){
-              var horario = new Date((data.sleep_jawbones[i].datetime))
-              if(horario.getHours() == index){
-                var value = activity_scale(max_activity)
-                //console.log(index)
-                var slice = d3.select(this)
-                slice.style('fill', 'red')
-                slice.style("border-bottom-color", "red");
-                slice.style("border-top-color", "red");
+            var i = 0;
+            //for(i=0;i<data.sleep_jawbones.length;i++){
+              while(i < data.sleep_jawbones.length){
+                var horario = new Date((data.sleep_jawbones[i].datetime))
+                if(horario.getHours() == index){
+                  var value = activity_scale(max_activity)
+                  //console.log(index)
+                  var slice = d3.select(this)
+                  slice.style('fill', 'red')
+                  //slice.style("border-bottom-color", "red");
+                  //slice.style("border-top-color", "red");
 
-                //sleepNodes.push(index)
-                console.log(horario.getHours())
-                index = index + 1
-                hasSleep;
-                break;
-                
-              }
+                  //sleepNodes.push(index)
+                  console.log(horario.getHours())
+                  index = index + 1
+                  i++;
+                  //hasSleep;
+                  break;
+                  
+                }
             }
           }
           if(!hasSleep){
