@@ -255,6 +255,7 @@ LuminosityArc.prototype.validate = function(data) {
 }
 
 LuminosityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
+
   var max_luminosity = d3.max(data.luminosity);
   var luminosity_scale = d3.scale.linear().domain([0, max_luminosity / 2, max_luminosity]).range(["#999900", "#cccc00", "#ffff66"]);
 
@@ -294,6 +295,7 @@ function ActivityArc(clock) {
 }
 
 ActivityArc.prototype.validate = function(data) {
+    console.log(data.sleep_jawbones)
   if (!data.activities) {
     this._active = false;
   }
@@ -323,6 +325,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
           console.log("entrei no sono")
         } else 
           {
+            var sleepColor = d3.scale.linear().domain([1,2,3]).range(["#ff1a1a", "#ffff1a", "#1aff1a"]);
             
             //console.log(index)
             var value = 0
@@ -338,14 +341,24 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                 {
                   var value = d.data.activity;
                   //console.log(index)
-                  var slice = d3.select(this)
-                  slice.style('fill', 'red')
+                  //var slice = d3.select(this)
+                  //slice.style('fill', 'red')
                   console.log(horario.getHours())
-                  index = index + 1
+                  index = index + 1;
+
+                  depthTotal = depthTotal + data.sleep_jawbones[i].depth;
 
                   //hasSleep;
-                  break
+                  //break
                   
+                }
+                else if (hasSleep){
+                  var depthAverage = depthTotal/index;
+                  console.log(depthAverage)
+                  var slice = d3.select(this);
+                  slice.style('fill', sleepColor(round(depthTotal)));
+                  depthTotal = 0;
+
                 }
               i++;
               }
