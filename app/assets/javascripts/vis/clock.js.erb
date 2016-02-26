@@ -316,7 +316,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
       .sort(null)
       .value(function(d) { return 1; });
   var index = 0
-  var sleepNodes = []
+  var lastVisited = 0;
   var activityArc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) { 
@@ -331,10 +331,11 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
             var value = 0
             var hasSleep = false
             //console.log(d3.selectAll("path"))
-            var i = 0;
+            var i = lastVisited;
             //for(i=0;i<data.sleep_jawbones.length;i++){
               var depthNumber = 0;
               var depthTotal = 0;
+              var depthAverage = 0;
               while(i < data.sleep_jawbones.length)
               {
 
@@ -356,13 +357,14 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                 }
                 else if (hasSleep)
                 {
+                  lastVisited = i;
                   if (depthNumber!=0)
                   {
-                    var depthAverage = depthTotal/depthNumber;
+                    depthAverage = depthTotal/depthNumber;
                   }
                   else
                   {
-                    var depthAverage = 1;
+                    depthAverage = 1;
                   }
                   console.log(depthAverage)
                   var slice = d3.select(this);
