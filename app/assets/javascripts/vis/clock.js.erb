@@ -342,7 +342,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                 var horario = new Date((data.sleep_jawbones[i].datetime))
                 if(horario.getHours() == index)
                 {
-                  var value = d.data.activity;
+                  value = d.data.activity;
                   //console.log(index)
                   //var slice = d3.select(this)
                   //slice.style('fill', 'red')
@@ -386,7 +386,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
                   console.log(depthAverage)
                   var slice = d3.select(this);
                   slice.style('fill', sleepColor(depthAverage));
-                  hasSleep = false
+                  hasSleep = true
               }
             index = index + 1;
           }
