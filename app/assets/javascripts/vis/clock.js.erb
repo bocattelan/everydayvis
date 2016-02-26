@@ -393,7 +393,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
         }
           if(!hasSleep){
             var value = (d.data.activity < (max_activity * 0.05) && d.data.activity != 0) ? (max_activity * 0.05) : d.data.activity
-            slice.style('fill', '#3182bd';
+            slice.style('fill', '#3182bd');
           }
           return (outerRadius - innerRadius) * (activity_scale(value) / 100.0) + innerRadius;
         
