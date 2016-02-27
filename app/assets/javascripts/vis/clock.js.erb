@@ -707,6 +707,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       for(i=0;i<columns.length;i++){
         group.push(columns[i][0]);
       }
+      console.log(group)
       var chart = c3.generate({
     data: {
   color: function (color, d) {
@@ -714,9 +715,9 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
     {
       if(d.value == sleep_jawbones[i])
       {
-        if(sleep_jawbones[i] == 1){ return d.id && d3.rgb('#6baed6')} 
-        else if(sleep_jawbones[i] == 2){return d.id && d3.rgb('#9edae5')}
-        else if(sleep_jawbones[i] == 3){return d.id && d3.rgb('#c6dbef')}
+        if(sleep_jawbones[i].depth == 1){ return d.id && d3.rgb('#6baed6')} 
+        else if(sleep_jawbones[i].depth == 2){return d.id && d3.rgb('#9edae5')}
+        else if(sleep_jawbones[i].depth == 3){return d.id && d3.rgb('#c6dbef')}
       }
     }
       
