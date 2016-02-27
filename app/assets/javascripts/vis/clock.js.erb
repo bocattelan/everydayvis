@@ -745,7 +745,11 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         rotated: true,
         y:{
           type: 'timeseries',
-          values: values
+            tick: {
+              values: values,
+              format: '%H:%M'
+            },
+          
         }
     }
 });
