@@ -710,7 +710,8 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       console.log(group)
 
 
-      var chart = c3.generate({
+      var chartSleep = c3.generate({
+        bindto: element.append("divSleep")
     data: {
   color: function (color, d)
     {
