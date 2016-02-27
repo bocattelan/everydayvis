@@ -691,7 +691,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       });
 
       columns = ['sleep depth']
-      values = []
+      values = ['time']
       sleepNumber = 0
       for(i=0;i<sleep_jawbones.length;i++){
         var horario = new Date((sleep_jawbones[i].datetime))
@@ -718,7 +718,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
           height: 100
         },
     data: {
-      x: 'x',
+      x: 'time',
   color: function (color, d)
     {
       for (i=0;i<sleep_jawbones.length;i++)
