@@ -698,7 +698,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         if(horario.getHours() == hour-1)
         {
           columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].depth]);
-          values.push(String(horario))
+          values.push(String(horario.getHours) + ':' + String(horario.getMinutes))
           sleepNumber++;
         }
         
@@ -746,9 +746,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         y:{
           type: 'timeseries',
             tick: {
-              values: values,
-               xFormat: '%H:%M',
-               format: '%H:%M'
+              values: values
             },
           
         }
