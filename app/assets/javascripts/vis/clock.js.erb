@@ -156,7 +156,10 @@ Clock.prototype.arcMouseClick = function(element, hour) {
     $(element).parent().children(".interaction-path").attr("class", pathClass);
     
     $(element).attr("class", $(element).attr("class") + " highlight");
-    showDataForClockSlice(this._slice_info, this._data.user_id, this._data.date, hour, this._size);
+    showDataForClockSlice(this._slice_info, this._data.user_id, this._data.date, hour, this._size,this._data.sleep_jawbones
+
+
+      );
   }
 }
 
@@ -637,7 +640,7 @@ TextArc.prototype.draw = function(svg, date) {
 // Ajax function to load subdata
 /////////////////////////////////////////////////
 
-function showDataForClockSlice(element, user_id, date, hour, clock_width) {
+function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_jawbones) {
   element.selectAll("*").remove();
 
   element.append("divSleep")
@@ -687,7 +690,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width) {
         }
       });
 
-      for(i=0;i<data.sleep_jawbones.length;i++){
+      for(i=0;i<sleep_jawbones.length;i++){
         console.log(hour)
       }
 
