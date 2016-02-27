@@ -687,24 +687,40 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width) {
         }
       });
 
-      var chartSleep = c3.generate({
-        bindto: element.append("divSleep"),
-        size: {
-          height: 70
-        },
+      for(i=0;i<data.sleep_jawbones.length;i++){
+        console.log(hour)
+      }
+
+
+
+      var chart = c3.generate({
     data: {
+  color: function (color, d) {
+      if(d.value == 1){ return d.id && d3.rgb('#6baed6')} 
+      else if(d.value == 2){return d.id && d3.rgb('#9edae5')}
+      else if(d.value == 3){return d.id && d3.rgb('#c6dbef')}
+      
+  },
         columns: [
-            ['data1', -30],
-            ['data2', 130],
-            ['data3', -230]
+            ['data1', 1],
+            ['data2', 2],
+            ['data3', 3]
         ],
+        names: {
+    data1: '',
+    data2: '',
+    data3:'',
+  },
         type: 'bar',
         groups: [
             ['data1', 'data2','data3']
         ]
     },
     axis:{
-        rotated: true
+        rotated: true,
+        y:{
+ 
+        }
     }
 });
 
