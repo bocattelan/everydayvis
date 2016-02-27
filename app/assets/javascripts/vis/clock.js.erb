@@ -719,6 +719,8 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       {
         if(d.value == new Date(sleep_jawbones[i].datetime))
         {
+          console.log(d.value)
+          console.log(new Date(sleep_jawbones[i].datetime))
           if(sleep_jawbones[i].depth == 1){ return d.id && d3.rgb('#6baed6')} 
           else if(sleep_jawbones[i].depth == 2){return d.id && d3.rgb('#9edae5')}
           else if(sleep_jawbones[i].depth == 3){return d.id && d3.rgb('#c6dbef')}
