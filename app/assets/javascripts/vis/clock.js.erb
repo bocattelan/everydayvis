@@ -697,9 +697,11 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         if(horario.getHours() == hour-1)
         {
           columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].datetime]);
+          sleepNumber++;
         }
         
       }
+      console.log(columns)
 
       group = [];
       for(i=0;i<columns.length;i++){
