@@ -744,8 +744,9 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
     axis:{
         rotated: true,
         y:{
-            type: 'category',
-            categories: values
+          tick:{
+            values: values
+          }
           
         }
     }
