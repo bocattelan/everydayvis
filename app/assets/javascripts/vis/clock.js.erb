@@ -696,7 +696,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         var horario = new Date((sleep_jawbones[i].datetime))
         if(horario.getHours() == hour-1)
         {
-          columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].datetime]);
+          columns.push(['sleep: ' + String(sleepNumber), new Date(sleep_jawbones[i].datetime)]);
           sleepNumber++;
         }
         
@@ -708,20 +708,24 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         group.push(columns[i][0]);
       }
       console.log(group)
+
+
       var chart = c3.generate({
     data: {
-  color: function (color, d) {
-    for (i=0;i<sleep_jawbones.length;i++)
+  color: function (color, d)
     {
-      if(d.value == sleep_jawbones[i].datetime)
+      for (i=0;i<sleep_jawbones.length;i++)
       {
-        if(sleep_jawbones[i].depth == 1){ return d.id && d3.rgb('#6baed6')} 
-        else if(sleep_jawbones[i].depth == 2){return d.id && d3.rgb('#9edae5')}
-        else if(sleep_jawbones[i].depth == 3){return d.id && d3.rgb('#c6dbef')}
+        if(d.value == sleep_jawbones[i].datetime)
+        {
+          if(sleep_jawbones[i].depth == 1){ return d.id && d3.rgb('#6baed6')} 
+          else if(sleep_jawbones[i].depth == 2){return d.id && d3.rgb('#9edae5')}
+          else if(sleep_jawbones[i].depth == 3){return d.id && d3.rgb('#c6dbef')}
+        }
       }
-    }
-      
-  },
+        
+    },
+
         columns: columns,
         type: 'bar',
         groups: [
@@ -731,7 +735,10 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
     axis:{
         rotated: true,
         y:{
-    
+          type: 'timeseries',
+          tick: {
+            format: '%H:%M'
+          }
         }
     }
 });
