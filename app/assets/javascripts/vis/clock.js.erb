@@ -640,6 +640,9 @@ TextArc.prototype.draw = function(svg, date) {
 function showDataForClockSlice(element, user_id, date, hour, clock_width) {
   element.selectAll("*").remove();
 
+  element.append("divSleep")
+      });
+
   element.append("div")
       .attr("class", "close-slice")
     .append("a")
@@ -685,20 +688,26 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width) {
         }
       });
 
-      var svg = dimple.newSvg("#chartContainer", 590, 400);
-    d3.tsv("/data/example_data.tsv", function (data) {
-      var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(75, 30, 480, 330)
-      myChart.addPctAxis("x", "Unit Sales");
-      var y = myChart.addCategoryAxis("y", "Month");
-      y.addOrderRule("Date");
-      myChart.addSeries("Channel", dimple.plot.bar);
-      myChart.addLegend(60, 10, 510, 20, "right");
-      myChart.draw();
-    });
+      var chartSleep = c3.generate({
+        bindto: element.append("divSleep"),
+    data: {
+        columns: [
+            ['data1', -30],
+            ['data2', 130],
+            ['data3', -230]
+        ],
+        type: 'bar',
+        groups: [
+            ['data1', 'data2','data3']
+        ]
+    },
+    axis:{
+        rotated: true
+    }
+});
 
 
-      
+
     },
     error: function() { console.log("Error loading slice data"); }
   });
