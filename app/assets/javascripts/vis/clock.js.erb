@@ -690,39 +690,45 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         }
       });
 
+      columns = []
+      sleepNumber = 0
       for(i=0;i<sleep_jawbones.length;i++){
-        console.log(hour)
+        var horario = new Date((data.sleep_jawbones[i].datetime))
+        if(horario.getHours() == hour-1)
+        {
+          columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].datetime]);
+        }
+        
       }
 
-
-
+      group = [];
+      for(i=0;i<columns.length;i++){
+        group.push(columns[i][0]);
+      }
       var chart = c3.generate({
     data: {
   color: function (color, d) {
-      if(d.value == 1){ return d.id && d3.rgb('#6baed6')} 
-      else if(d.value == 2){return d.id && d3.rgb('#9edae5')}
-      else if(d.value == 3){return d.id && d3.rgb('#c6dbef')}
+    for (i=0;i<sleep_jawbones.length;i++)
+    {
+      if(d.value == sleep_jawbones[i])
+      {
+        if(sleep_jawbones[i] == 1){ return d.id && d3.rgb('#6baed6')} 
+        else if(sleep_jawbones[i] == 2){return d.id && d3.rgb('#9edae5')}
+        else if(sleep_jawbones[i] == 3){return d.id && d3.rgb('#c6dbef')}
+      }
+    }
       
   },
-        columns: [
-            ['data1', 1],
-            ['data2', 2],
-            ['data3', 3]
-        ],
-        names: {
-    data1: '',
-    data2: '',
-    data3:'',
-  },
+        columns: columns,
         type: 'bar',
         groups: [
-            ['data1', 'data2','data3']
+            group
         ]
     },
     axis:{
         rotated: true,
         y:{
- 
+    
         }
     }
 });
