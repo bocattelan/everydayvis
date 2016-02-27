@@ -690,14 +690,14 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         }
       });
 
-      columns = []
+      columns = ['sleep depth']
       values = []
       sleepNumber = 0
       for(i=0;i<sleep_jawbones.length;i++){
         var horario = new Date((sleep_jawbones[i].datetime))
         if(horario.getHours() == hour-1)
         {
-          columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].depth]);
+          columns.push(sleep_jawbones[i].depth]);
           values.push(sleep_jawbones[i].datetime)
           sleepNumber++;
         }
@@ -715,7 +715,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       var chartSleep = c3.generate({
         bindto: element.append("divSleep"),
         size: {
-          height: 70
+          height: 100
         },
     data: {
   color: function (color, d)
@@ -738,18 +738,16 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         
     },
 
-        columns: columns,
+        columns: [columns,values],
         type: 'bar',
-        groups: [
-            group
-        ]
+
     },
     axis:{
-        rotated: true,
-        y:{
-          tick:{
-            values: values
-          }
+        x:{
+          type: 'timeseries',
+            tick: {
+              format: '%H:%M'
+            }
           
         }
     }
