@@ -718,7 +718,8 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       for (i=0;i<sleep_jawbones.length;i++)
       {
         var time = new Date(sleep_jawbones[i].datetime)
-        console.log(d.value)
+        console.log(d[0])
+        console.log(d[1])
         console.log(sleep_jawbones[i].datetime)
         if(d.value == sleep_jawbones[i].datetime)
         {
