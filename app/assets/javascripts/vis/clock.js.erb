@@ -697,7 +697,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         var horario = new Date((sleep_jawbones[i].datetime))
         if(horario.getHours() == hour-1)
         {
-          columns.push((String(horario.getHours()) + ':' + String(horario.getMinutes())), sleep_jawbones[i].depth]);
+          columns.push([String(horario.getHours()) + ':' + String(horario.getMinutes()), sleep_jawbones[i].depth]);
           //values.push(sleep_jawbones[i].datetime)
           sleepNumber++;
         }
