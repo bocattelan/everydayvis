@@ -693,7 +693,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
       columns = []
       sleepNumber = 0
       for(i=0;i<sleep_jawbones.length;i++){
-        var horario = new Date((data.sleep_jawbones[i].datetime))
+        var horario = new Date((sleep_jawbones[i].datetime))
         if(horario.getHours() == hour-1)
         {
           columns.push(['sleep: ' + String(sleepNumber), sleep_jawbones[i].datetime]);
