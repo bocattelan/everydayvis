@@ -718,6 +718,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
           height: 100
         },
     data: {
+      x: 'x',
   color: function (color, d)
     {
       for (i=0;i<sleep_jawbones.length;i++)
@@ -738,7 +739,7 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         
     },
 
-        columns: [columns,values],
+        columns: [values,columns],
         type: 'bar',
 
     },
