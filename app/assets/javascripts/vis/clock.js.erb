@@ -716,20 +716,15 @@ function showDataForClockSlice(element, user_id, date, hour, clock_width,sleep_j
         bindto: element.append("divSleep"),
         size: {
           height: 100,
-          width: 510
+          width: 520
         },
     data: {
       x: 'time',
 
         columns: [values,columns],
-        type: 'step',
+        type: 'spline',
 
     },
-    line: {
-  step: {
-    type: 'step-after'
-  }
-},
     axis:{
         x:{
           type: 'timeseries',
