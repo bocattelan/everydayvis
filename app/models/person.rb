@@ -1,6 +1,20 @@
 class Person < ActiveRecord::Base
-  ActiveRecord::Base.establish_connection DBCONF
+  #ActiveRecord::Base.establish_connection DBCONF
+  #development:
+  #adapter: postgresql
+  #encoding: unicode
+  #database: everydayvis_development
+  #pool: 5
+  #username: postgres
+  #password:
+  #host: localhost
 
+  ActiveRecord::Base.establish_connection(
+    :adapter  => "postgresql",
+    :host     => "localhost",
+    :database => "everydayvis_development",
+    :encoding => "unicode"
+  ).connection
   belongs_to :user
 
   has_many :activities, dependent: :destroy
