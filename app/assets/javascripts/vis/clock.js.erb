@@ -312,7 +312,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
   if ($('.clocks-relative-to-all').is(":checked")) {
     max_activity = max_selected_activity;
   }
-  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([10, 100]);
+  var activity_scale = d3.scale.linear().domain([0, max_activity]).range([0, 100]);
 
   var pie = d3.layout.pie()
       .sort(null)
@@ -431,7 +431,7 @@ ActivityArc.prototype.draw = function(svg, data, outerRadius, innerRadius) {
       .attr("d", activityOutlineArc)
       .attr("stroke-width", function(d) { return d.data.ev ? '4px' : '2px' })
       .attr("stroke", function(d) { return d.data.ev ? '#444' : 'black' })
-      .on("mouseover", function(d) { clock.arcMouseOn("Activity " + d.data.activity);console.log(d.data.activity) })
+      .on("mouseover", function(d) { clock.arcMouseOn("Activity " + d.data.activity); })
       .on("mouseout", function(d) { clock.arcMouseOut(); })
       .on("mousedown", function(d, i) { clock.arcMouseClick(this, i + 1); });
 }
