@@ -30,6 +30,7 @@ function addClockToView(date) {
     url: url,
     success: function(data) {
       new Clock().draw(".clocks", data);
+      console.log(data)
     },
     error: function() {
       console.log("Something went wrong with clocks request.");
