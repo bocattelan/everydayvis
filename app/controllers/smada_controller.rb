@@ -48,6 +48,7 @@ class SmadaController < ApplicationController
       elsif sensor["id_sensor"] == 15
         sensor["sensor_name"] = 'DUST'
       end
+    end
           
           
 
