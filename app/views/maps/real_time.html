@@ -149,7 +149,12 @@ function temperatureDraw(markerPosition){
     document.getElementById("temperatureMoment").innerHTML = data[index][0]['payload']
     document.getElementById("temperatureUpdateTime").innerHTML = data[index][0]['timestamp']
   }
+  else{
+    document.getElementById("temperatureMoment").innerHTML = 'Not Available'
+    document.getElementById("temperatureUpdateTime").innerHTML = 'Not Available'
+  }
 }
+
 
 function pressaoDraw(markerPosition){
   //console.log(markerPosition.toString())
@@ -177,6 +182,10 @@ function pressaoDraw(markerPosition){
   if(data[index]!=undefined){
     document.getElementById("pressureMoment").innerHTML = data[index][0]['payload']
     document.getElementById("pressureUpdateTime").innerHTML = data[index][0]['timestamp']
+  }
+  else{
+    document.getElementById("pressureMoment").innerHTML = 'Not Available'
+    document.getElementById("pressureUpdateTime").innerHTML = 'Not Available'
   }
 }
 
