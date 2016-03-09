@@ -47,14 +47,14 @@
   <div id="temperature">
     <h4 id="temperatureTitle">Temperature</h4>
     <p1 id="temperatureMoment"></p1>
+    <h1 id="temperatureTitle">Last Updated:</h1>
+    <p1 id="temperatureUpdateTime"></p1>
   </div>
   <div id="pressure">
     <h4 id="temperatureTitle">Atmospheric Pressure</h4>
     <p1 id="pressureMoment"></p1>
-  </div>
-  <div id="updated">
-    <h4 id="temperatureTitle">Last Updated:</h4>
-    <p1 id="updateTime"></p1>
+    <h1 id="temperatureTitle">Last Updated:</h1>
+    <p1 id="pressureUpdateTime"></p1>
   </div>
 </div>
   <script>
@@ -147,7 +147,7 @@ function temperatureDraw(markerPosition){
   }
   if(data[index]!=undefined){
     document.getElementById("temperatureMoment").innerHTML = data[index][0]['payload']
-    console.log(data)
+    document.getElementById("temperatureUpdateTime").innerHTML = data[index][0]['timestamp']
   }
 }
 
@@ -176,6 +176,7 @@ function pressaoDraw(markerPosition){
   }
   if(data[index]!=undefined){
     document.getElementById("pressureMoment").innerHTML = data[index][0]['payload']
+    document.getElementById("pressureUpdateTime").innerHTML = data[index][0]['timestamp']
   }
 }
 
@@ -184,7 +185,6 @@ function pressaoDraw(markerPosition){
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
   pressaoDraw(markerPosition);
-  document.getElementById("updateTime").innerHTML = new Date(data[0][0]["timestamp"])
 }
 
 
