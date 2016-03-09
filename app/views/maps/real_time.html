@@ -43,7 +43,7 @@
 <div id="sunBlock">
   <h3> UV Level: </h3>
   <svg width="50" height="50">
-    <circle id="UVCircle" cx="25" cy="25" r="25" fill="green" />
+    <circle id="UVCircle" cx="25" cy="25" r="25" fill="#33ff00" />
   </svg>
 </div>
 </div>
@@ -167,8 +167,8 @@ function temperatureDraw(markerPosition){
     document.getElementById("temperatureUpdateTime").innerHTML = data[index][0]['timestamp']
 
     var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
- var circle = d3.select("#temperatureCircle")
- circle.style("fill", temperatureColor(data[index][0]['payload']));
+    var circle = d3.select("#temperatureCircle")
+    circle.style("fill", temperatureColor(data[index][0]['payload']));
   }
   else{
     document.getElementById("temperatureMoment").innerHTML = 'Not Available'
@@ -236,6 +236,10 @@ function uvDraw(markerPosition){
   if(data[index]!=undefined){
     document.getElementById("uvMoment").innerHTML = data[index][0]['payload']
     document.getElementById("uvUpdateTime").innerHTML = data[index][0]['timestamp']
+
+    var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
+    var circle = d3.select("#temperatureCircle")
+    circle.style("fill", temperatureColor(data[index][0]['payload']));
   }
   else{
     document.getElementById("uvMoment").innerHTML = 'Not Available'
