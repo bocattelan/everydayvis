@@ -119,7 +119,7 @@
       
 
 function temperatureDraw(markerPosition){
-  console.log(markerPosition.toString())
+ // console.log(markerPosition.toString())
   xaxis = ['x'];
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
@@ -127,12 +127,12 @@ function temperatureDraw(markerPosition){
       var values = data[i][0]['localizacao'].split(' ');
       var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
       if( markerPosition.equals(dataPosition)){
-        console.log(sensorType)
-        console.log(data[i][0]['id_end_device'])
-        console.log(data[i][0]['id_sensor'])
+        //console.log(sensorType)
+       // console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
-            //console.log("entrei oloko")
+            console.log("entrei oloko")
             var index = i;
             break;
           }
@@ -173,7 +173,7 @@ function temperatureDraw(markerPosition){
 }
 
 function pressaoDraw(markerPosition){
-  console.log(markerPosition.toString())
+  //console.log(markerPosition.toString())
   xaxis = ['x'];
   yaxis = [];
   for (var i = 0, len = data.length; i < len; i++) {
@@ -182,11 +182,11 @@ function pressaoDraw(markerPosition){
       var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
       if( markerPosition.equals(dataPosition)){
         //console.log(sensorType)
-        console.log(data[i][0]['id_end_device'])
-        console.log(data[i][0]['id_sensor'])
+        //console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Pressão Atmosféica'){
-            //console.log("entrei oloko")
+            console.log("entrei oloko")
             var index = i;
             break;
           }
@@ -238,7 +238,7 @@ function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     document.getElementById("infoWindowTitle").innerHTML = results[0].name
     document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 250});
-    console.log(results)
+   // console.log(results)
   }
 }
 
