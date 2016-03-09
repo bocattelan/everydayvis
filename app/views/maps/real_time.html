@@ -146,7 +146,8 @@ function temperatureDraw(markerPosition){
     }
   }
   if(data[index]!=undefined){
-    document.getElementById("temperatureMoment").innerHTML = data[index][0][payload]
+    document.getElementById("temperatureMoment").innerHTML = data[index][0]['payload']
+    console.log(data)
   }
 }
 
@@ -174,7 +175,7 @@ function pressaoDraw(markerPosition){
     }
   }
   if(data[index]!=undefined){
-    document.getElementById("pressureMoment").innerHTML = data[index][0][payload]
+    document.getElementById("pressureMoment").innerHTML = data[index][0]['payload']
   }
 }
 
