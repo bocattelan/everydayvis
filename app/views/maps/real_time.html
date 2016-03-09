@@ -1,0 +1,267 @@
+<style>
+
+#mapClock{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+
+#map{
+  width: 60%;
+  height: 500px;
+
+}
+#clock{
+}
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+#graphs{
+  display: none;
+}
+</style>
+<div id="mapClock">
+<div id="map"></div>
+<img id="clock" src="/relogioFinal.png">
+</div>
+<div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+</div>
+
+<input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
+
+<div id="graphs">
+  <div id="temperature">
+    <h4 id="temperatureTitle">Temperature</h4>
+    <p1 id="temperatureMoment"></p1>
+  </div>
+  <div id="pressure">
+    <h4 id="temperatureTitle">Atmospheric Pressure</h4>
+    <p1 id="pressureMoment"></p1>
+  </div>
+  <div id="updated">
+    <h4 id="temperatureTitle">Last Updated:</h4>
+    <p1 id="updateTime"></p1>
+  </div>
+</div>
+  <script>
+  function showData (box) {
+        
+        var chboxs = document.getElementById("checkBox1");
+        var vis = "none";
+            if(chboxs.checked){
+             vis = "block";
+            }
+        document.getElementById(box).style.display = vis;
+    
+    
+    }
+
+
+
+
+
+
+    data = <%= raw(@dados.to_json) %>;
+    sensorType = <%= raw(@sensorName.to_json)%>;
+    var map;
+    function initMap() {
+      //INF:
+      //var lalo = {lat: -30.0684214, lng: -51.120619};
+      var lalo = {lat: -27.548046, lng: -48.49798599999997};
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: lalo,
+        zoom: 3
+      });
+      var geocoder = new google.maps.Geocoder();
+      document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+      });
+
+      var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="infoWindowTitle" class="firstHeading">No Name Available</h3>'+
+      '<div id="infoWindowContent">'+
+
+      //adicionei uma foto e um canvas
+      '<img id = "infowindowImage" >' +
+      '<div id="temperature"></div>' + 
+
+
+      '</div>'+
+      '</div>';
+
+
+      //Aqui um exemplo. Podemos pegar varias imagens de vários lugares e botar em um dicionario, ou usá-las diretamente como fiz ali embaixo
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      var icons = {
+        parking: {
+          icon: iconBase + 'parking_lot_maps.png'
+        },
+        library: {
+          icon: iconBase + 'library_maps.png'
+        },
+        info: {
+          icon: iconBase + 'info-i_maps.png'
+        }
+      };
+
+      
+
+function temperatureDraw(markerPosition){
+ // console.log(markerPosition.toString())
+  xaxis = ['x'];
+  yaxis = [];
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        //console.log(sensorType)
+       // console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
+            console.log("entrei oloko")
+            var index = i;
+            break;
+          }
+        }
+        
+      }
+    }
+  }
+  if(data[index]!=undefined){
+    document.getElementById("temperatureMoment").innerHTML = data[index][0][payload]
+  }
+}
+
+function pressaoDraw(markerPosition){
+  //console.log(markerPosition.toString())
+  xaxis = ['x'];
+  yaxis = [];
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        //console.log(sensorType)
+        //console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Pressão Atmosférica'){
+            console.log("entrei oloko")
+            var index = i;
+            break;
+          }
+        }
+        
+      }
+    }
+  }
+  if(data[index]!=undefined){
+    document.getElementById("pressureMoment").innerHTML = data[index][0][payload]
+  }
+}
+
+
+
+function draw(markerPosition) {
+  temperatureDraw(markerPosition);
+  pressaoDraw(markerPosition);
+  document.getElementById("updateTime").innerHTML = new Date(data[0][0]["timestamp"])
+}
+
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    document.getElementById("infoWindowTitle").innerHTML = results[0].name
+    document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 250});
+   // console.log(results)
+  }
+}
+
+
+
+var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+//Essa função só vai ser executada quando a infowindow for aberta
+google.maps.event.addListener(infowindow, 'domready', function() {
+  draw(infowindow.getPosition());
+  var request = {
+    location: infowindow.getPosition(),
+    radius: '500'
+  };
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+});
+
+//Ao fechar ela volta aos valores iniciais
+google.maps.event.addListener(infowindow, 'position_changed', function() {
+  infowindow.setContent(contentString);
+});
+
+
+    for (var i = 0, len = data.length; i < len; i++) {
+      if(data[i][0] != undefined){
+        var values = data[i][0]['localizacao'].split(' ');
+        var sensorName = data[i][0]['id_end_device']
+
+        var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
+        var marker = new google.maps.Marker({
+          position: lalo,
+          map: map,
+          title: 'Stuffy stuff',
+          infowindow: infowindow,
+          //icone direto por URL
+         // icon: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11895965_964789006917806_7559308059866769096_n.jpg?oh=6b971e5636a75602635e85243b5fb094&oe=56BD82D9'
+         //icone usando o dicionario
+          icon: icons['library'].icon
+        });
+
+
+        google.maps.event.addListener(marker, 'click', function() {
+          this.infowindow.open(map, this); 
+        });
+      }
+   }
+  }
+
+
+
+
+
+
+
+
+  function geocodeAddress(geocoder, resultsMap) {
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      //var marker = new google.maps.Marker({
+        //map: resultsMap,
+        //position: results[0].geometry.location
+      //});
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&callback=initMap&libraries=places" async defer></script>
