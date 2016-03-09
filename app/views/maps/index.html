@@ -131,7 +131,7 @@ function temperatureDraw(markerPosition){
         console.log(data[i][0]['id_end_device'])
         console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
-          //if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
             //console.log("entrei oloko")
             var index = i;
             break;
@@ -185,7 +185,7 @@ function pressaoDraw(markerPosition){
         console.log(data[i][0]['id_end_device'])
         console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
-          //if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'pressao'){
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Pressão Atmosféica'){
             //console.log("entrei oloko")
             var index = i          + 1;
             break;
