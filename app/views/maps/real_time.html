@@ -158,7 +158,8 @@ function temperatureDraw(markerPosition){
     document.getElementById("temperatureUpdateTime").innerHTML = data[index][0]['timestamp']
 
     
- var circle = d3.select("temperatureCircle").style("fill", 'red');
+ var circle = d3.select("temperatureCircle")
+ circle.style("fill", 'red');
   }
   else{
     document.getElementById("temperatureMoment").innerHTML = 'Not Available'
