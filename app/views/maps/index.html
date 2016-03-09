@@ -133,7 +133,7 @@ function temperatureDraw(markerPosition){
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperature'){
             //console.log("entrei oloko")
-            var index = j;
+            var index = i;
             break;
           }
         }
@@ -187,7 +187,7 @@ function pressaoDraw(markerPosition){
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Pressão Atmosféica'){
             //console.log("entrei oloko")
-            var index = j;
+            var index = i;
             break;
           }
         }
