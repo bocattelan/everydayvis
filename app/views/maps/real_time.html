@@ -318,7 +318,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
       for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
             //console.log("entrei oloko")
-            heatMapData.push({location: positionTest, weight: data[i][0]['payload']})
+            heatMapData.push(positionTest)//, weight: data[i][0]['payload']})
           }
         }
       }
@@ -330,9 +330,9 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
 
   heatmap = new google.maps.visualization.HeatmapLayer({
           data: heatMapData,
-          map: map,
-          radius: 10,
-          dissipating: true
+          map: map
+          //radius: 100,
+          //dissipating: true
           //gradient: ["#0329ff","#03fff3","#ff0303"]
         });
    console.log(heatMapData)
