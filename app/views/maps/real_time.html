@@ -112,6 +112,10 @@
       document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
       });
+
+      function toggleHeatmap() {
+      heatmap.setMap(heatmap.getMap() ? null : map);
+      }
       
 
       var contentString = '<div id="content">'+
