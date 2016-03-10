@@ -331,6 +331,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
   heatmap = new google.maps.visualization.HeatmapLayer({
           data: heatMapData,
           map: map,
+          radius:20,
           maxIntensity: 50
           //gradient: ["#0329ff","#03fff3","#ff0303"]
         });
