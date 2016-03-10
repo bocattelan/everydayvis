@@ -313,11 +313,14 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
         google.maps.event.addListener(marker, 'click', function() {
           this.infowindow.open(map, this); 
         });
-      console.log(data[i][0])
-      if(data[i][0]['sensor_name']=='temperatura'){
-        heatMapData.push({location: lalo, weight: data[i][0]['payload']})
-      }
-    }
+      //console.log(data[i][0])
+      for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
+            //console.log("entrei oloko")
+            heatMapData.push({location: lalo, weight: data[i][0]['payload']})
+          }
+        }
+        
 
       
    }
