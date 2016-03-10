@@ -313,7 +313,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
         google.maps.event.addListener(marker, 'click', function() {
           this.infowindow.open(map, this); 
         });
-      
+      console.log(data[i][0])
       if(data[i][0]['sensor_name']=='temperatura'){
         heatMapData.push({location: lalo, weight: data[i][0]['payload']})
       }
