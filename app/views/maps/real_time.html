@@ -112,11 +112,7 @@
       document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
       });
-
-      var heatmap = new google.maps.visualization.HeatmapLayer({
-          data: getPoints(),
-          map: map
-        });
+      
 
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -146,7 +142,6 @@
           icon: iconBase + 'info-i_maps.png'
         }
       };
-      
 
       
 
@@ -296,7 +291,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
   infowindow.setContent(contentString);
 });
 
-
+    var heatMapData = [];
     for (var i = 0, len = data.length; i < len; i++) {
       if(data[i][0] != undefined){
         var values = data[i][0]['localizacao'].split(' ');
@@ -319,7 +314,17 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
           this.infowindow.open(map, this); 
         });
       }
+
+      for (j = 0;j<data[i].length-1;j++){
+        if(data[i][j]["sensor_name"] == 'temperatura'){
+          heatMapData.push({location: lalo, weight: data[i][j]['payload']})
+        }
+      }
    }
+   var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatMapData,
+          map: map
+        });
   }
 
 
@@ -344,4 +349,4 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
   });
 }
   </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&callback=initMap&libraries=places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktyvarPr54K1RG__mZF2j-xgwTLmTvi8&callback=initMap&libraries=places,visualization" async defer></script>
