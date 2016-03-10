@@ -54,7 +54,7 @@
 <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
-      <button onclick="toggleHeatmap()"></button>
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
 </div>
 
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
@@ -113,9 +113,7 @@
         geocodeAddress(geocoder, map);
       });
 
-      function toggleHeatmap() {
-      heatmap.setMap(heatmap.getMap() ? null : map);
-      }
+      
       
 
       var contentString = '<div id="content">'+
@@ -148,7 +146,9 @@
       };
 
       
-
+function toggleHeatmap() {
+      heatmap.setMap(heatmap.getMap() ? null : map);
+}
 function temperatureDraw(markerPosition){
  // console.log(markerPosition.toString())
   xaxis = ['x'];
@@ -329,6 +329,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
           data: heatMapData,
           map: map
         });
+   console.log(heatMapData)
   }
 
 
