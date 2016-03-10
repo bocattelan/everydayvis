@@ -99,7 +99,7 @@
 
     data = <%= raw(@dados.to_json) %>;
     sensorType = <%= raw(@sensorName.to_json)%>;
-    var map;
+    var map, heatmap;
     function initMap() {
       //INF:
       //var lalo = {lat: -30.0684214, lng: -51.120619};
@@ -328,9 +328,10 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
    }
 
 
-   var heatmap = new google.maps.visualization.HeatmapLayer({
+  heatmap = new google.maps.visualization.HeatmapLayer({
           data: heatMapData,
-          map: map
+          map: map,
+          radius: 100
         });
    console.log(heatMapData)
   }
