@@ -298,6 +298,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
         var sensorName = data[i][0]['id_end_device']
 
         var lalo = {lat: parseFloat(values[0]), lng: parseFloat(values[1])};
+        var positionTest = new google.maps.LatLng(parseFloat(values[0]), parseFloat(values[1]))
         var marker = new google.maps.Marker({
           position: lalo,
           map: map,
@@ -317,7 +318,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
       for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
             //console.log("entrei oloko")
-            heatMapData.push({location: lalo, weight: data[i][0]['payload']})
+            heatMapData.push({location: positionTest, weight: data[i][0]['payload']})
           }
         }
       }
