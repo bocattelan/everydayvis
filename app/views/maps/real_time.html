@@ -313,10 +313,11 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
         google.maps.event.addListener(marker, 'click', function() {
           this.infowindow.open(map, this); 
         });
-      }
+      
       if(data[i][0]['sensor_name']=='temperatura'){
         heatMapData.push({location: lalo, weight: data[i][0]['payload']})
       }
+    }
 
       
    }
@@ -334,7 +335,9 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
 
 
 
-
+function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
 
   function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
