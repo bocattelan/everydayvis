@@ -54,6 +54,7 @@
 <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
 </div>
 
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
@@ -112,6 +113,11 @@
         geocodeAddress(geocoder, map);
       });
 
+      var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -140,6 +146,7 @@
           icon: iconBase + 'info-i_maps.png'
         }
       };
+    }
 
       
 
