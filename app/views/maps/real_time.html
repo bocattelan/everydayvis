@@ -170,7 +170,7 @@ function temperatureDraw(markerPosition){
   }
   if(data[index]!=undefined){
     document.getElementById("temperatureMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("temperatureUpdateTime").innerHTML = data[index][0]['timestamp']
+    document.getElementById("temperatureUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
 
     var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
     var circle = d3.select("#temperatureCircle")
@@ -208,7 +208,7 @@ function pressaoDraw(markerPosition){
   }
   if(data[index]!=undefined){
     document.getElementById("pressureMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("pressureUpdateTime").innerHTML = data[index][0]['timestamp']
+    document.getElementById("pressureUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
   }
   else{
     document.getElementById("pressureMoment").innerHTML = 'Not Available'
