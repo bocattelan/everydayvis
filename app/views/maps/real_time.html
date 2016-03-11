@@ -241,7 +241,7 @@ function uvDraw(markerPosition){
   }
   if(data[index]!=undefined){
     document.getElementById("uvMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("uvUpdateTime").innerHTML = String(data[index][0]['timestamp'])
+    document.getElementById("uvUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
 
     var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
     var circle = d3.select("#temperatureCircle")
