@@ -280,7 +280,7 @@ google.maps.event.addListener(infowindow, 'domready', function() {
   draw(infowindow.getPosition());
   var request = {
     location: infowindow.getPosition(),
-    radius: '500'
+    radius: '100'
   };
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
