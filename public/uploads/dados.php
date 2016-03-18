@@ -8,9 +8,9 @@
     oReq.onload = function() {
         //This is where you handle what to do with the response.
         //The actual data is found on this.responseText
-        alert(this.responseText); //Will alert: 42
+        console.log(this.responseText); //Will alert: 42
     };
-    oReq.open("get", "getALL.php", true);
+    oReq.open("get", "getAll.php", true);
     //                               ^ Don't block the rest of the execution.
     //                                 Don't wait until the request finishes to 
     //                                 continue.
