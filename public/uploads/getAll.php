@@ -18,6 +18,6 @@ echo $sSql . "<br>";
 $executa = pg_executa($sSql);
 
 
-if ($executa) echo $executa;
+echo $executa;
 			   
 ?>
