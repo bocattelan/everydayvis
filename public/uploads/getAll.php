@@ -13,8 +13,8 @@ $query = "SELECT * FROM data";
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 $rows = array();
 while (array_push($rows,pg_fetch_assoc($rs))) {
-    //echo $rows['id_sensor'] . " " . $rows['id_end_device'] . " " . $rows['payload'];
-    //echo "<br>";
+    echo $rows[0]['id_sensor'] . " " . $rows[0]['id_end_device'] . " " . $rows[0]['payload'];
+    echo "<br>";
 }
 
 echo json_encode($rows);
