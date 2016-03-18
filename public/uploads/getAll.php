@@ -1,23 +1,21 @@
-<?php
+<?php 
 
-require_once "../sensors/conf.php";
-require_once "../sensors/funcoes.php";
+$host = "127.0.0.1"; 
+$user = "postgres"; 
+$port = "5432"; 
+$db = "sensordata"; 
 
+$con = pg_connect("host=$host dbname=$db user=$user port=$port")
+    or die ("Could not connect to server\n"); 
 
-//echo "<pre>";print_r($_GET);exit();
+$query = "SELECT * FROM cars LIMIT 5"; 
 
-//pg_retorna("SELECT * from data", $rQry);
+$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 
-echo "iniciando...<br>";
+while ($row = pg_fetch_row($rs)) {
+  echo "$row[0] $row[1] $row[2]\n";
+}
 
-$sSql = "SELECT * FROM data";
+pg_close($con); 
 
-echo $sSql . "<br>";			   
-
-
-$executa = pg_executa($sSql);
-
-
-echo $executa . "<br>";
-			   
 ?>
