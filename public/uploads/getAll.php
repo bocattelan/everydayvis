@@ -10,7 +10,7 @@ require_once "funcoes.php";
 
 echo "iniciando...<br>";
 
-$sSql = "SELECT * FROM data"
+$sSql = "SELECT * FROM data";
 
 echo $sSql . "<br>";			   
 
