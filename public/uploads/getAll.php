@@ -11,13 +11,13 @@ $con = pg_connect("host=$host dbname=$db user=$user port=$port")
 $query = "SELECT * FROM data"; 
 
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
-
-while ($row = pg_fetch_assoc($rs)) {
-    echo $row['id_sensor'] . " " . $row['id_end_device'] . " " . $row['payload'];
-    echo "<br>";
+$rows = array();
+while (array_push($rows,pg_fetch_assoc($rs))) {
+    //echo $rows['id_sensor'] . " " . $rows['id_end_device'] . " " . $rows['payload'];
+    //echo "<br>";
 }
 
-
+echo json_encode($rows);
 pg_close($con); 
 
 ?>
