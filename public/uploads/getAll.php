@@ -8,7 +8,7 @@ $db = "sensordata";
 $con = pg_connect("host=$host dbname=$db user=$user port=$port")
     or die ("Could not connect to server\n"); 
 
-$query = "SELECT * FROM data LIMIT 1000"; 
+$query = "SELECT * FROM data LIMIT 100"; 
 
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 $rows = array();
