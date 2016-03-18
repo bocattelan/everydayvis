@@ -13,7 +13,7 @@ $query = "SELECT * FROM sensors LIMIT 5";
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 
 while ($row = pg_fetch_assoc($rs)) {
-    echo "$row['id_sensor'] $row['id_end_device'] $row['payload']";
+    echo $row['id_sensor'] . "" . $row['id_end_device'] . "" . $row['payload'];
     echo "<br>";
 }
 
