@@ -13,7 +13,7 @@ $query = "SELECT * FROM data";
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 $rows = array();
 
-//ini_set('memory_limit', '-1');
+ini_set('memory_limit', '-1');
 /*
 while (array_push($rows,pg_fetch_assoc($rs))) {
     echo $rows[0]['id_sensor'] . " " . $rows[0]['id_end_device'] . " " . $rows[0]['payload'];
