@@ -8,12 +8,12 @@ $db = "sensordata";
 $con = pg_connect("host=$host dbname=$db user=$user port=$port")
     or die ("Could not connect to server\n"); 
 
-$query = "SELECT * FROM sensors LIMIT 5"; 
+$query = "SELECT * FROM sensors"; 
 
 $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 
 while ($row = pg_fetch_assoc($rs)) {
-    echo $row['id_sensor'] . "" . $row['id_end_device'] . "" . $row['payload'];
+    echo $row['id_sensor'] . " " . $row['id_end_device'] . " " . $row['payload'];
     echo "<br>";
 }
 
