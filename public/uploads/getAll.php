@@ -1,7 +1,7 @@
 <?php
 
-require_once "conf.php";
-require_once "funcoes.php";
+require_once "../sensors/conf.php";
+require_once "../sensors/funcoes.php";
 
 
 //echo "<pre>";print_r($_GET);exit();
