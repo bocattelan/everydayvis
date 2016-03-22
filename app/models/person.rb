@@ -1,4 +1,4 @@
-class Person < everyDB
+class Person < EveryDB
 
   has_many :activities, dependent: :destroy
   has_many :luminosities, dependent: :destroy

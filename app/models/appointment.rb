@@ -1,4 +1,4 @@
-class Appointment < everyDB
+class Appointment < EveryDB
 
   belongs_to :person
 

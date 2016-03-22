@@ -1,4 +1,4 @@
-class everyDB < ActiveRecord::Base
+class EveryDB < ActiveRecord::Base
   ActiveRecord::Base.establish_connection(
     :adapter  => "postgresql",
     :host     => "localhost",

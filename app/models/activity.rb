@@ -1,4 +1,4 @@
-class Activity < everyDB
+class Activity < EveryDB
 
   belongs_to :person
 

@@ -1,4 +1,4 @@
-class Work < everyDB
+class Work < EveryDB
 
   belongs_to :person
 

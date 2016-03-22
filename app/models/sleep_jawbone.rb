@@ -1,2 +1,2 @@
-class SleepJawbone < everyDB
+class SleepJawbone < EveryDB
 end

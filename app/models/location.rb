@@ -1,4 +1,4 @@
-class Location < everyDB
+class Location < EveryDB
 
   belongs_to :person
 

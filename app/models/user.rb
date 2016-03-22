@@ -1,4 +1,4 @@
-class User < everyDB
+class User < EveryDB
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable

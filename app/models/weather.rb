@@ -1,4 +1,4 @@
-class Weather < everyDB
+class Weather < EveryDB
 
   belongs_to :person
 

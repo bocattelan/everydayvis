@@ -1,4 +1,4 @@
-class Luminosity < everyDB
+class Luminosity < EveryDB
 
   belongs_to :person
 
