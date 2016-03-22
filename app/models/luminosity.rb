@@ -1,4 +1,4 @@
-class Luminosity < ActiveRecord::Base
+class Luminosity < everyDB
 
   belongs_to :person
 

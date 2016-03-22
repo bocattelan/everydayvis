@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Person < everyDB
 
   has_many :activities, dependent: :destroy
   has_many :luminosities, dependent: :destroy
