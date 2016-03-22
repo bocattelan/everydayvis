@@ -1,4 +1,4 @@
-class Activity < EveryDB
+class Activity < ActiveRecord::Base
 
   belongs_to :person
 

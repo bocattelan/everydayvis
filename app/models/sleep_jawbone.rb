@@ -1,2 +1,2 @@
-class SleepJawbone < EveryDB
+class SleepJawbone < ActiveRecord::Base
 end

@@ -1,4 +1,4 @@
-class Weather < EveryDB
+class Weather < ActiveRecord::Base
 
   belongs_to :person
 
