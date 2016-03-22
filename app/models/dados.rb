@@ -1,5 +1,5 @@
 class Dados < Smada
-	#self.table_name = "data"
+	self.table_name = "data"
   #ActiveRecord::Base.establish_connection(
   #  :adapter  => "postgresql",
   #  :host     => "localhost",
