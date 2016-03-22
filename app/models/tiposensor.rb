@@ -1,3 +1,3 @@
-class Tiposensor < ActiveRecord::Base
+class Tiposensor < Smada
   
 end

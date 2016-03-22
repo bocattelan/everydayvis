@@ -1,4 +1,4 @@
-class Dados < ActiveRecord::Base
+class Dados < Smada
 	#self.table_name = "data"
   #ActiveRecord::Base.establish_connection(
   #  :adapter  => "postgresql",

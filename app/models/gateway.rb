@@ -1,3 +1,3 @@
-class Gateway < ActiveRecord::Base
+class Gateway < Smada
 
 end

@@ -1,4 +1,4 @@
-class Sensor < ActiveRecord::Base
+class Sensor < Smada
   #ActiveRecord::Base.establish_connection(
   #  :adapter  => "postgresql",
   #  :host     => "localhost",
