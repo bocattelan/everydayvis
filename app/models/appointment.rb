@@ -1,4 +1,4 @@
-class Appointment < ActiveRecord::Base
+class Appointment < EveryDb
 
   belongs_to :person
 

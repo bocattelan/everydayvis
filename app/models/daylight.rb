@@ -1,4 +1,4 @@
-class Daylight < ActiveRecord::Base
+class Daylight < EveryDb
 
   belongs_to :person
 

@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < EveryDb
 
   belongs_to :person
 
