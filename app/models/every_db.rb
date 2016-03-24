@@ -1,5 +1,5 @@
 class EveryDb < ActiveRecord::Base
-  ActiveRecord::Base.establish_connection(
+  establish_connection(
     :adapter  => "postgresql",
     :host     => "localhost",
     :database => "everydayvis_development",

@@ -1,5 +1,5 @@
 class Smada < ActiveRecord::Base
-  ActiveRecord::Base.establish_connection(
+  establish_connection(
     :adapter  => "postgresql",
     :host     => "localhost",
     :database => "sensordata",
