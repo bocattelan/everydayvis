@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
     def cache_other_db_connections
       yield
-      Smada.connection.cache 
-      EveryDb.connection.cache 
+        Smada.connection.cache 
+        EveryDb.connection.cache 
 
     end
 
