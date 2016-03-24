@@ -2,8 +2,6 @@ class PeopleController < ApplicationController
   decorates_assigned :person
 
   def index
-    #raise Person.connection_config.to_s
-
     @people = Person.all.decorate
   end
 

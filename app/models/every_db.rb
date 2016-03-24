@@ -4,7 +4,6 @@ class EveryDb < ActiveRecord::Base
     :host     => "localhost",
     :database => "everydayvis_development",
     :user     => "postgres"
-    #:password => "city9"
   ).connection
   self.abstract_class = true
 end
