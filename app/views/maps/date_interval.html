@@ -38,7 +38,9 @@
 <div id="map"></div>
 
 <div id="warnings">
+<h2> From: </h2>
 <input type="date" name="from" min="2015-01-02"><br>
+<h2> To: </h2>
 <input type="date" name="to"><br>
   <div id="temperatureBlock">
     <h3> Temperature: </h3>
@@ -172,20 +174,36 @@ function temperatureDraw(markerPosition){
       }
     }
   }
-  if(data[index]!=undefined){
-    document.getElementById("temperatureMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("temperatureUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
+  if(data[index] != undefined){
+    data[index].forEach(function(d) {
+        date = new Date(d['timestamp']);
+        //date.setHours(date.getHours()+2);
+        xaxis.push(date);
+        yaxis.push(+d['payload']);
+      });
 
-    var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
-    var circle = d3.select("#temperatureCircle")
-    circle.style("fill", temperatureColor(data[index][0]['payload']));
-  }
-  else{
-    document.getElementById("temperatureMoment").innerHTML = 'Not Available'
-    document.getElementById("temperatureUpdateTime").innerHTML = 'Not Available'
+   var chart = c3.generate({
+        bindto: document.getElementById("temperatureGraph"),
+        size: {
+          height: 180,
+          width: 4320
+        },
+        data: {
+          x: 'x',
+          columns: [xaxis, yaxis],
+          type: 'area'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%d/%m/%y - %H:%M'
+            }
+          }
+        }
+      });
   }
 }
-
 
 function pressaoDraw(markerPosition){
   //console.log(markerPosition.toString())
@@ -210,50 +228,34 @@ function pressaoDraw(markerPosition){
       }
     }
   }
-  if(data[index]!=undefined){
-    document.getElementById("pressureMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("pressureUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
-  }
-  else{
-    document.getElementById("pressureMoment").innerHTML = 'Not Available'
-    document.getElementById("pressureUpdateTime").innerHTML = 'Not Available'
-  }
-}
+  if(data[index] != undefined){
+    data[index].forEach(function(d) {
+        date = new Date(d['timestamp']);
+        //date.setHours(date.getHours()+2);
+        xaxis.push(date);
+        yaxis.push(+d['payload']);
+      });
 
-function uvDraw(markerPosition){
-  //console.log(markerPosition.toString())
-  xaxis = ['x'];
-  yaxis = [];
-  for (var i = 0, len = data.length; i < len; i++) {
-    if(data[i][0] != undefined){
-      var values = data[i][0]['localizacao'].split(' ');
-      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
-      if( markerPosition.equals(dataPosition)){
-        //console.log(sensorType)
-        //console.log(data[i][0]['id_end_device'])
-       // console.log(data[i][0]['id_sensor'])
-        for (var j = 0, leng = sensorType.length; j < leng; j++) {
-          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'UV'){
-            //console.log("entrei oloko")
-            var index = i;
-            break;
+   var chart = c3.generate({
+        bindto: document.getElementById("pressureGraph"),
+        size: {
+          height: 180,
+          width: 4320
+        },
+        data: {
+          x: 'x',
+          columns: [xaxis, yaxis],
+          type: 'area'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%d/%m/%y - %H:%M'
+            }
           }
         }
-        
-      }
-    }
-  }
-  if(data[index]!=undefined){
-    document.getElementById("uvMoment").innerHTML = data[index][0]['payload']
-    document.getElementById("uvUpdateTime").innerHTML = new Date(data[index][0]['timestamp'])
-
-    var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
-    var circle = d3.select("#temperatureCircle")
-    circle.style("fill", temperatureColor(data[index][0]['payload']));
-  }
-  else{
-    document.getElementById("uvMoment").innerHTML = 'Not Available'
-    document.getElementById("uvUpdateTime").innerHTML = 'Not Available'
+      });
   }
 }
 
@@ -262,9 +264,7 @@ function uvDraw(markerPosition){
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
   pressaoDraw(markerPosition);
-  uvDraw(markerPosition);
 }
-
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
