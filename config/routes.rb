@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'smada', to: 'smada#inicio'
   get 'smada/maps', to: 'maps#index'
   get 'smada/maps/real_time', to: 'maps#real_time'
+  get 'smada/maps/date_interval', to: 'maps#date_interval'
 
   get 'dataLogin' => 'login#index'
   get 'uploadFile' => 'import#index'
