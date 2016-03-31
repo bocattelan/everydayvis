@@ -161,7 +161,7 @@ class MapsController < ApplicationController
     @dados = []
     @endDeviceId.each do |end_device|
       @sensorId.each do |id_sensor|
-        @dados << Dados.where("id_end_device = ? AND id_sensor = ?", end_device["id_end_device"].to_s, id_sensor["id_sensor"].to_s).order("timestamp")
+        @dados << Dados.where("id_end_device = ? AND id_sensor = ? AND timestamp BETWEEN ? AND ?", end_device["id_end_device"].to_s, id_sensor["id_sensor"].to_s,3.months.ago,Time.now()).order("timestamp").last(100)
       end
     end
   end
