@@ -367,7 +367,7 @@ function rainWarn(markerPosition){
     console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
-      if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).Date() == dateTo.Date() ){
+      if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
 
         var chart = c3.generate({
           bindto: document.getElementById("rainWarn"),
