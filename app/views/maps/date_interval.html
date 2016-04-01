@@ -107,7 +107,7 @@
           bindto: document.getElementById("rainWarn"),
           data: {
               columns: [
-                  ['mm', data[index][j]['payload']]
+                  ['mm', 10]
               ],
               type: 'bar'
             },
@@ -115,10 +115,17 @@
               width: {
                   ratio: 0.5 // this makes bar width 50% of length between ticks
               }
+            },
+            axis: {
+              y: {
+                tick: {
+                  values: [0, 10, 20,30]
+                }
+              }
             }
       });
 
-      
+
       //INF:
       //var lalo = {lat: -30.0684214, lng: -51.120619};
       var lalo = {lat: -27.548046, lng: -48.49798599999997};
