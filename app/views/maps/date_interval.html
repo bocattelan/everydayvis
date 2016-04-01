@@ -105,6 +105,10 @@
 
       var chart = c3.generate({
           bindto: document.getElementById("rainWarn"),
+          size: {
+            height: 100,
+            width: 50
+        },
           data: {
               columns: [
                   ['mm', 10]
