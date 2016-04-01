@@ -170,7 +170,7 @@ function temperatureDraw(markerPosition){
         //date.setHours(date.getHours()+2);
         if(date > dateFrom){
           if(date < dateTo){
-            break;
+            return;
           }
           else{
             xaxis.push(date);
@@ -233,7 +233,7 @@ function pressaoDraw(markerPosition){
         //date.setHours(date.getHours()+2);
         if(date > dateFrom){
           if(date < dateTo){
-            break;
+            return;
           }
           else{
             xaxis.push(date);
