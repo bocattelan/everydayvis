@@ -38,10 +38,6 @@
 <div id="map"></div>
 
 <div id="warnings">
-<h1> From: </h1>
-<input type="date" name="from" min= <%= 3.months.ago %> ><br>
-<h1> To: </h1>
-<input type="date" name="to"><br>
   <div id="temperatureBlock">
     <h3> Temperature: </h3>
     <svg width="50" height="50">
@@ -62,6 +58,10 @@
       <input id="submit" type="button" value="Geocode">
       <button onclick="toggleHeatmap()">Toggle Heatmap</button>
 </div>
+<h3> From: </h3>
+<input type="date" name="from" min= <%= 3.months.ago %> ><br>
+<h3> To: </h3>
+<input type="date" name="to"><br>
 
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
 
