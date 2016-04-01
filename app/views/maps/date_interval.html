@@ -102,6 +102,23 @@
     sensorType = <%= raw(@sensorName.to_json)%>;
     var map, heatmap;
     function initMap() {
+
+      var chart = c3.generate({
+          bindto: document.getElementById("rainWarn"),
+          data: {
+              columns: [
+                  ['mm', data[index][j]['payload']]
+              ],
+              type: 'bar'
+            },
+          bar: {
+              width: {
+                  ratio: 0.5 // this makes bar width 50% of length between ticks
+              }
+            }
+      });
+
+      
       //INF:
       //var lalo = {lat: -30.0684214, lng: -51.120619};
       var lalo = {lat: -27.548046, lng: -48.49798599999997};
