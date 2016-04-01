@@ -68,6 +68,21 @@
 <h3> To: </h3>
 <input type="date" id="to" value= <%= Time.now() %>><br>
 
+<div id="airBlock">
+    <h3> Air Quality </h3>
+    <svg height="120" width="120">
+  <defs>
+    <filter id="f1" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+      <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+    </filter>
+  </defs>
+  <circle id="airCircle" cx="25" cy="25" r="25" stroke="green" stroke-width="3"
+  fill="yellow" filter="url(#f1)" />
+</svg>
+</div>
+
+
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
 
 <div id="graphs">
@@ -111,7 +126,7 @@
         },
           data: {
               columns: [
-                  ['mm', 10]
+                  ['mm', 1]
               ],
               type: 'bar'
             },
