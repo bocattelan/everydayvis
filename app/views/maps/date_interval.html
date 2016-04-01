@@ -63,10 +63,6 @@
       <button onclick="toggleHeatmap()">Toggle Heatmap</button>
 </div>
 
-<h3> From: </h3>
-<input type="date" id="from" min= <%= 3.months.ago %> value= <%= 1.months.ago %>><br>
-<h3> To: </h3>
-<input type="date" id="to" value= <%= Time.now() %>><br>
 
 <div id="airBlock">
     <h3> Air Quality </h3>
@@ -82,6 +78,15 @@
   fill="green" filter="url(#f1)" />
 </svg>
 </div>
+
+
+
+<h3> From: </h3>
+<input type="date" id="from" min= <%= 3.months.ago %> value= <%= 1.months.ago %>><br>
+<h3> To: </h3>
+<input type="date" id="to" value= <%= Time.now() %>><br>
+
+
 
 
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
