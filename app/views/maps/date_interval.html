@@ -50,6 +50,10 @@
       <circle id="UVCircle" cx="25" cy="25" r="25" fill="#33ff00" />
     </svg>
   </div>
+  <div id="rainBlock">
+    <h3> Rain (last hour): </h3>
+    <div id="rainWarn"></div>
+  </div>
 </div>
 
 </div>
@@ -60,9 +64,9 @@
 </div>
 
 <h3> From: </h3>
-<input type="date" id="from" min= <%= 3.months.ago %> value= <%= 1.months.ago %><br>
+<input type="date" id="from" min= <%= 3.months.ago %> value= <%= 1.months.ago %>><br>
 <h3> To: </h3>
-<input type="date" id="to"><br>
+<input type="date" id="to" value= <%= Time.now() %>><br>
 
 <input type="checkbox" id="checkBox1" onclick="showData('graphs')"> Show Full Data
 
@@ -275,6 +279,7 @@ function draw(markerPosition) {
 function warn(markerPosition){
   temperatureWarn(markerPosition);
   uvWarn(markerPosition);
+  rainWarn(markerPosition);
 }
 
 function temperatureWarn(markerPosition){
@@ -335,6 +340,53 @@ function uvWarn(markerPosition){
     var circle = d3.select("#temperatureCircle")
     circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
   }
+}
+
+function rainWarn(markerPosition){
+
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        //console.log(sensorType)
+       // console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Chuva'){
+            console.log("entrei oloko")
+            var index = i;
+            break;
+          }
+        }
+        
+      }
+    }
+  }
+  if(data[index]!=undefined){
+    var dateTo = new Date(document.getElementById("to").value);
+    for (var j = data[index].length, leng = 0; j >= leng; j--) {
+      if(new Date(data[index][j]['timestamp']) < dateTo){
+
+        var chart = c3.generate({
+          data: {
+              columns: [
+                  ['mm', data[index][j+1]['payload']]
+              ],
+              type: 'bar'
+            },
+          bar: {
+              width: {
+                  ratio: 0.5 // this makes bar width 50% of length between ticks
+              }
+            }
+      });
+
+      }
+    }
+
+  
+}
 }
 
 
