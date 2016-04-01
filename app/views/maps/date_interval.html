@@ -72,13 +72,14 @@
     <h3> Air Quality </h3>
     <svg height="120" width="120">
   <defs>
-    <filter id="f1" x="0" y="0" width="200%" height="200%">
+    <filter id="f2" x="0" y="0" width="200%" height="200%">
       <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
-      <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
     </filter>
   </defs>
-  <circle id="airCircle" cx="25" cy="25" r="25" stroke="green" stroke-width="3"
-  fill="yellow" filter="url(#f1)" />
+  <circle id="airCircle" cx="25" cy="25" r="25" stroke="yellow" stroke-width="3"
+  fill="green" filter="url(#f1)" />
 </svg>
 </div>
 
