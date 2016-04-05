@@ -159,10 +159,12 @@ class MapsController < ApplicationController
     @endDeviceId = Dados.select('id_end_device').uniq
 
     @dados = []
+    @initialTime = 1.days.ago
+    @endTime = Time.now()
     @endDeviceId.each do |end_device|
       @sensorId.each do |id_sensor|
         if end_device["id_end_device"].to_s != '701'
-          @dados << Dados.where("id_end_device = ? AND id_sensor = ? AND timestamp BETWEEN ? AND ?", end_device["id_end_device"].to_s, id_sensor["id_sensor"].to_s,1.months.ago,Time.now()).order("timestamp")
+          @dados << Dados.where("id_end_device = ? AND id_sensor = ? AND timestamp BETWEEN ? AND ?", end_device["id_end_device"].to_s, id_sensor["id_sensor"].to_s,@initialTime,@endTime).order("timestamp")
         end
       end
     end

@@ -82,9 +82,9 @@
 
 
 <h3> From: </h3>
-<input type="date" id="from" min= <%= 3.months.ago %> value= <%= 1.days.ago %>><br>
+<input type="date" id="from" min= <%= @initialTime %> value= <%= 1.days.ago %>><br>
 <h3> To: </h3>
-<input type="date" id="to" value= <%= Time.now() %>><br>
+<input type="date" id="to" value= <%= @endTime %>><br>
 
 
 
