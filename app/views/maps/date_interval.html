@@ -445,6 +445,7 @@ function uvWarn(markerPosition){
       }
     }
   }
+  console.log(data[index])
   if(data[index][data.length-1]!=undefined){
     var circle = d3.select("#UVCircle")
     circle.style("fill", uvColor(data[index][data.length-1]['payload']));
