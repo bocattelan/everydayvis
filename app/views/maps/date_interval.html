@@ -415,7 +415,7 @@ function temperatureWarn(markerPosition){
       }
     }
   }
-  if(data[index]!=undefined){
+  if(data[index][data.length-1]!=undefined){
     var circle = d3.select("#temperatureCircle")
     circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
   }
@@ -444,7 +444,7 @@ function uvWarn(markerPosition){
       }
     }
   }
-  if(data[index]!=undefined){
+  if(data[index][data.length-1]!=undefined){
     var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
     var circle = d3.select("#temperatureCircle")
     circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
@@ -472,7 +472,7 @@ function rainWarn(markerPosition){
       }
     }
   }
-  if(data[index]!=undefined){
+  if(data[index][data.length-1]!=undefined){
     //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
