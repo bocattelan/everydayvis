@@ -472,7 +472,7 @@ function rainWarn(markerPosition){
       }
     }
   }
-  if(data[index][data.length-1]!=undefined){
+  if(data[index] != undefined && data[index][data.length-1]!=undefined){
     //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
