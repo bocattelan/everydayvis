@@ -343,15 +343,15 @@ function uvDraw(markerPosition){
     data[index].forEach(function(d) {
         date = new Date(d['timestamp']);
         //date.setHours(date.getHours()+2);
-        if(date > dateFrom){
-          if(date < dateTo){
-            return;
-          }
-          else{
+        //if(date > dateFrom){
+          //if(date < dateTo){
+            //return;
+          //}
+          //else{
             xaxis.push(date);
             yaxis.push(+d['payload']);
-          } 
-      }
+          //} 
+      //}
       });
 
    var chart = c3.generate({
@@ -464,7 +464,7 @@ function rainWarn(markerPosition){
        // console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Chuva'){
-            console.log("entrei oloko")
+            //console.log("entrei oloko")
             var index = i;
             break;
           }
