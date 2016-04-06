@@ -204,7 +204,7 @@ function temperatureDraw(markerPosition){
       if( markerPosition.equals(dataPosition)){
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
-            console.log("entrei oloko")
+            //console.log("entrei oloko")
             var index = i;
             break;
           }
@@ -406,7 +406,7 @@ function temperatureWarn(markerPosition){
        // console.log(data[i][0]['id_sensor'])
         for (var j = 0, leng = sensorType.length; j < leng; j++) {
           if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'temperatura'){
-            console.log("entrei oloko")
+            //console.log("entrei oloko")
             var index = i;
             break;
           }
@@ -536,6 +536,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
     var heatMapData = [];
     for (var i = 0, len = data.length; i < len; i++) {
       if(data[i][0] != undefined){
+        console.log('Id_end_device: ' + data[i][0]['id_end_device'] + ' id_sensor: ' + data[i][0]['id_sensor'])
         var values = data[i][0]['localizacao'].split(' ');
         var sensorName = data[i][0]['id_end_device']
 
@@ -578,7 +579,7 @@ google.maps.event.addListener(infowindow, 'position_changed', function() {
           //maxIntensity: 40
           //gradient: ["#0329ff","#03fff3","#ff0303"]
         });
-   console.log(heatMapData)
+   //console.log(heatMapData)
   }
 
 
