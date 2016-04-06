@@ -380,6 +380,7 @@ function uvDraw(markerPosition){
 
 
 var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
+var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
   pressaoDraw(markerPosition);
@@ -445,9 +446,8 @@ function uvWarn(markerPosition){
     }
   }
   if(data[index][data.length-1]!=undefined){
-    var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
-    var circle = d3.select("#temperatureCircle")
-    circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
+    var circle = d3.select("#UVCircle")
+    circle.style("fill", uvColor(data[index][data.length-1]['payload']));
   }
 }
 
