@@ -415,7 +415,7 @@ function temperatureWarn(markerPosition){
       }
     }
   }
-  if(data[index][data.length-1]!=undefined){
+  if(data[index]!=undefined && data[index][data.length-1]!=undefined){
     var circle = d3.select("#temperatureCircle")
     circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
   }
