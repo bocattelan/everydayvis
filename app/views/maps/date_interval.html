@@ -474,7 +474,7 @@ function rainWarn(markerPosition){
     }
   }
   if(data[index]!=undefined){
-    console.log(data[index])
+    //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
@@ -507,7 +507,7 @@ function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     document.getElementById("infoWindowTitle").innerHTML = results[0].name
     document.getElementById("infowindowImage").src = results[0].photos[0].getUrl(opts={maxHeight: 250});
-    console.log(results)
+    //console.log(results)
   }
 }
 
