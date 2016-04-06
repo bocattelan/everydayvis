@@ -379,7 +379,7 @@ function uvDraw(markerPosition){
 
 
 
-
+var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
   pressaoDraw(markerPosition);
@@ -416,7 +416,6 @@ function temperatureWarn(markerPosition){
     }
   }
   if(data[index]!=undefined){
-    var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
     var circle = d3.select("#temperatureCircle")
     circle.style("fill", temperatureColor(data[index][data.length-1]['payload']));
   }
