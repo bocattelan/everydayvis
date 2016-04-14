@@ -57,8 +57,10 @@
     </svg>
   </div>
   <div id="rainBlock">
-    <h3> Rain (last hour): </h3>
+    <h3> Rain (hour): </h3>
     <div id="rainWarnHour"></div>
+    <h3> Rain (day): </h3>
+    <div id="rainWarnDay"></div>
   </div>
 </div>
 
@@ -528,8 +530,9 @@ function draw(markerPosition) {
 function warn(markerPosition){
   temperatureWarn(markerPosition);
   uvWarn(markerPosition);
-  rainWarnHour(markerPosition);
   humidityWarn(markerPosition);
+  rainWarnHour(markerPosition);
+  rainWarnDay(markerPosition);
 }
 
 function temperatureWarn(markerPosition){
@@ -634,7 +637,64 @@ function rainWarnHour(markerPosition){
           },
           data: {
               columns: [
-                  ['mm', data[index][j]['payload']]
+                  ['mm', sumRain]
+              ],
+              type: 'bar'
+            },
+          axis: {
+              y: {
+                  max: 50,
+                  min:0,
+              }
+            }
+      });
+        break;
+      }
+    }
+  }
+}
+
+function rainWarnDay(markerPosition){
+
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        //console.log(sensorType)
+       // console.log(data[i][0]['id_end_device'])
+       // console.log(data[i][0]['id_sensor'])
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Chuva'){
+            //console.log("entrei oloko")
+            var index = i;
+            break;
+          }
+        }
+        
+      }
+    }
+  }
+  if(data[index] != undefined && data[index][data.length-1]!=undefined){
+    //console.log(data[index])
+    var dateTo = new Date(document.getElementById("to").value);
+    for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
+      if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
+        var sumRain = 0;
+        while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate()){
+          sumRain = sumRain + data[index][j]['payload'];
+          j--;
+        }
+
+        var chart = c3.generate({
+          bindto: document.getElementById("rainWarnDay"),
+          size: {
+              height: 250,
+              width: 100
+          },
+          data: {
+              columns: [
+                  ['mm', sumRain]
               ],
               type: 'bar'
             },
