@@ -537,8 +537,9 @@ function humidityWarn(markerPosition){
       }
     }
   }
+  console.log(data[index][data[index].length-1]['payload'])
   if(data[index]!=undefined && data[index][data[index].length-1]!=undefined){
-    var circle = d3.select("#humidityCircle")
+    var circle = d3.select("#humidityCircle");
     circle.style("fill", humidityColor(data[index][data[index].length-1]['payload']));
   }
 }
