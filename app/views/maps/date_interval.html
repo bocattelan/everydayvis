@@ -678,7 +678,7 @@ function rainWarnDay(markerPosition){
   if(data[index] != undefined && data[index][data.length-1]!=undefined){
     //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
-    dateTo.setHours(dateTo.getHours + 3);
+    dateTo.setHours(dateTo.getHours() + 3);
     console.log(dateTo);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
