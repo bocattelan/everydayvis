@@ -378,7 +378,7 @@ function uvDraw(markerPosition){
 }
 
 
-
+//Temperatura: roxo,a zul escuro, azul médio, azul claro, verde, amarelo, vermelho, vermelho escuro
 var temperatureColor = d3.scale.linear().domain([-5,5,15,21,26,32,38]).range(["#9467bd","#393b79","#3182bd","#6baed6","#31a354","#ffef00","#ff0800","#960018"]);
 var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
 function draw(markerPosition) {
@@ -446,6 +446,7 @@ function uvWarn(markerPosition){
     }
   }
   //console.log(data[index][data.length-1])
+  if(data[index]!= undefined)
   if(data[index][data[index].length-1]!=undefined){
     var circle = d3.select("#UVCircle")
     circle.style("fill", uvColor(data[index][data[index].length-1]['payload']));
