@@ -53,7 +53,7 @@
   <div id="humidityBlock">
     <h3> Humidity Level: </h3>
     <svg width="50" height="50">
-      <circle id="humitidyCircle" cx="25" cy="25" r="25" fill="#33ff00" />
+      <circle id="humidityCircle" cx="25" cy="25" r="25" fill="#33ff00" />
     </svg>
   </div>
   <div id="rainBlock">
@@ -537,7 +537,6 @@ function humidityWarn(markerPosition){
       }
     }
   }
-  console.log(data[index][data[index].length-1]['payload']);
   if(data[index]!=undefined && data[index][data[index].length-1]!=undefined){
     var circle = d3.select("#humidityCircle");
     circle.style("fill", humidityColor(data[index][data[index].length-1]['payload']));
