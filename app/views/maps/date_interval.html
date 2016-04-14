@@ -114,6 +114,10 @@
     <h4 id="humidityTitle">Humidity</h4>
     <div id="humidityGraph"></div>
   </div>
+  <div id="humidity">
+    <h4 id="rainTitle">Rain</h4>
+    <div id="rainGraph"></div>
+  </div>
 </div>
   <script>
   function showData (box) {
@@ -447,6 +451,66 @@ function humidityDraw(markerPosition){
   }
 }
 
+function rainDraw(markerPosition){
+ // console.log(markerPosition.toString())
+  xaxis = ['x'];
+  yaxis = [];
+  for (var i = 0, len = data.length; i < len; i++) {
+    if(data[i][0] != undefined){
+      var values = data[i][0]['localizacao'].split(' ');
+      var dataPosition = new google.maps.LatLng({lat:parseFloat(values[0]), lng:parseFloat(values[1])})
+      if( markerPosition.equals(dataPosition)){
+        for (var j = 0, leng = sensorType.length; j < leng; j++) {
+          if (sensorType[j]['id_end_device'] == data[i][0]['id_end_device'] && sensorType[j]['id_sensor'] == data[i][0]['id_sensor'] && sensorType[j]['sensor_name'] == 'Chuva'){
+            //console.log("entrei oloko")
+            var index = i;
+            break;
+          }
+        }
+        
+      }
+    }
+  }
+  if(data[index] != undefined){
+    var dateFrom = new Date(document.getElementById("from").value);
+    var dateTo = new Date(document.getElementById("to").value);
+    data[index].forEach(function(d) {
+        date = new Date(d['timestamp']);
+        //date.setHours(date.getHours()+2);
+        if(date > dateFrom){
+          if(date < dateTo){
+            return;
+          }
+          else{
+            xaxis.push(date);
+            yaxis.push(+d['payload']);
+          } 
+      }
+      });
+
+   var chart = c3.generate({
+        bindto: document.getElementById("rainGraph"),
+        size: {
+          height: 180,
+          width: 4320
+        },
+        data: {
+          x: 'x',
+          columns: [xaxis, yaxis],
+          type: 'area'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%d/%m/%y - %H:%M'
+            }
+          }
+        }
+      });
+  }
+}
+
 //Temperatura: roxo,a zul escuro, azul médio, azul claro, verde, amarelo, vermelho, vermelho escuro
 var temperatureColor = d3.scale.threshold().domain([-5,5,15,21,26,32,38]).range(["#9467bd","#393b79","#3182bd","#6baed6","#31a354","#ffef00","#ff0800","#960018"]);
 
@@ -558,6 +622,10 @@ function rainWarn(markerPosition){
 
         var chart = c3.generate({
           bindto: document.getElementById("rainWarn"),
+          size: {
+              height: 250,
+              width: 100
+          },
           data: {
               columns: [
                   ['mm', data[index][j]['payload']]
