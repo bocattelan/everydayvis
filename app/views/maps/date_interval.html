@@ -58,7 +58,7 @@
   </div>
   <div id="rainBlock">
     <h3> Rain (last hour): </h3>
-    <div id="rainWarn"></div>
+    <div id="rainWarnHour"></div>
   </div>
 </div>
 
@@ -143,7 +143,7 @@
     function initMap() {
 
       var chart = c3.generate({
-          bindto: document.getElementById("rainWarn"),
+          bindto: document.getElementById("rainWarnHour"),
           size: {
             height: 250,
             width: 100
@@ -528,7 +528,7 @@ function draw(markerPosition) {
 function warn(markerPosition){
   temperatureWarn(markerPosition);
   uvWarn(markerPosition);
-  rainWarn(markerPosition);
+  rainWarnHour(markerPosition);
   humidityWarn(markerPosition);
 }
 
@@ -594,7 +594,7 @@ function uvWarn(markerPosition){
   }
 }
 
-function rainWarn(markerPosition){
+function rainWarnHour(markerPosition){
 
   for (var i = 0, len = data.length; i < len; i++) {
     if(data[i][0] != undefined){
@@ -627,7 +627,7 @@ function rainWarn(markerPosition){
         }
 
         var chart = c3.generate({
-          bindto: document.getElementById("rainWarn"),
+          bindto: document.getElementById("rainWarnHour"),
           size: {
               height: 250,
               width: 100
