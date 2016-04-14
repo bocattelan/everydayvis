@@ -620,6 +620,11 @@ function rainWarn(markerPosition){
     var dateTo = new Date(document.getElementById("to").value);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
+        var sumRain = 0;
+        while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() && new Date(data[index][j]['timestamp']).getHours() == dateTo.getHours()){
+          sumRain = sumRain + data[index][j]['payload'];
+          j--;
+        }
 
         var chart = c3.generate({
           bindto: document.getElementById("rainWarn"),
