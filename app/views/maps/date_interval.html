@@ -379,7 +379,7 @@ function uvDraw(markerPosition){
 
 
 
-var temperatureColor = d3.scale.linear().domain([-40,27,50]).range(["#0329ff","#03fff3","#ff0303"]);
+var temperatureColor = d3.scale.linear().domain([-5,5,15,21,26,32,38]).range(["#9467bd","#393b79","#3182bd","#6baed6","#31a354","#ffef00","#ff0800","#960018"]);
 var uvColor = d3.scale.linear().domain([0,6,8,11]).range(["#33ff00","#efff00","#ff7300","#ff0000","#f300ff"]);
 function draw(markerPosition) {
   temperatureDraw(markerPosition);
@@ -499,10 +499,10 @@ function rainWarn(markerPosition){
         break;
       }
     }
+  }
+}
 
-  
-}
-}
+
 
 
 function callback(results, status) {
