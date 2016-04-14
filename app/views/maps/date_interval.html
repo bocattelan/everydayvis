@@ -92,7 +92,7 @@
 <h3> From: </h3>
 <input type="date" id="from" min= <%= @initialTime %> value= <%= 1.days.ago %>><br>
 <h3> To: </h3>
-<input type="date" id="to" value= <%= @endTime + 3.hours%>><br>
+<input type="date" id="to" value= <%= @endTime %>><br>
 
 
 
@@ -678,6 +678,7 @@ function rainWarnDay(markerPosition){
   if(data[index] != undefined && data[index][data.length-1]!=undefined){
     //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
+    dateTo.setHours(dateTo.getHours + 3);
     console.log(dateTo);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
