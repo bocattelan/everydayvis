@@ -116,7 +116,7 @@
     <h4 id="humidityTitle">Humidity</h4>
     <div id="humidityGraph"></div>
   </div>
-  <div id="humidity">
+  <div id="rain">
     <h4 id="rainTitle">Rain</h4>
     <div id="rainGraph"></div>
   </div>
@@ -621,6 +621,7 @@ function rainWarnHour(markerPosition){
   if(data[index] != undefined && data[index][data.length-1]!=undefined){
     //console.log(data[index])
     var dateTo = new Date(document.getElementById("to").value);
+    dateTo.setHours(dateTo.getHours() + 3);
     for (var j = data[index].length-1, leng = 0; j >= leng; j--) {
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
         var sumRain = 0;
@@ -689,7 +690,7 @@ function rainWarnDay(markerPosition){
           sumRain = sumRain + data[index][j]['payload'];
           j--;
         }
-
+        console.log(sumRain)
         var chart = c3.generate({
           bindto: document.getElementById("rainWarnDay"),
           size: {
