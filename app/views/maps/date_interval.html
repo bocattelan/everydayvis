@@ -626,7 +626,7 @@ function rainWarnHour(markerPosition){
       if(new Date(data[index][j]['timestamp']) > dateTo && new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() ){
         var sumRain = 0;
         while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() && new Date(data[index][j]['timestamp']).getHours() == dateTo.getHours()){
-          sumRain = sumRain + (data[index][j]['payload']).to_f;
+          sumRain = sumRain + parseFloat(data[index][j]['payload']);
           console.log("chuva hora")
           console.log(sumRain)
           j--;
@@ -690,7 +690,7 @@ function rainWarnDay(markerPosition){
         while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate()){
           //console.log(new Date(data[index][j]['timestamp']));
           if(data[index][j]['payload']!=undefined)
-            sumRain = sumRain + (data[index][j]['payload']).to_f;
+            sumRain = sumRain + parseFloat(data[index][j]['payload']);
           console.log(data[index][j]['payload'])
           console.log(sumRain);
           j--;
