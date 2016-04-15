@@ -688,6 +688,7 @@ function rainWarnDay(markerPosition){
         while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate()){
           //console.log(new Date(data[index][j]['timestamp']));
           sumRain = sumRain + data[index][j]['payload'];
+          console.log(data[index][j]['payload'])
           j--;
         }
         console.log(sumRain)
