@@ -627,6 +627,8 @@ function rainWarnHour(markerPosition){
         var sumRain = 0;
         while(new Date(data[index][j]['timestamp']).getDate() == dateTo.getDate() && new Date(data[index][j]['timestamp']).getHours() == dateTo.getHours()){
           sumRain = sumRain + (data[index][j]['payload']).to_f;
+          console.log("chuva hora")
+          console.log(sumRain)
           j--;
         }
 
