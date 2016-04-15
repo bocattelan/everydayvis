@@ -689,10 +689,10 @@ function rainWarnDay(markerPosition){
           //console.log(new Date(data[index][j]['timestamp']));
           if(data[index][j]['payload']!=undefined)
           sumRain = sumRain + (data[index][j]['payload']).to_f;
-          console.log(data[index][j]['payload']);
+          console.log(sumRain);
           j--;
         }
-        console.log(sumRain)
+        //console.log(sumRain)
         var chart = c3.generate({
           bindto: document.getElementById("rainWarnDay"),
           size: {
