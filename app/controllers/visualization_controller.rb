@@ -1,4 +1,4 @@
-class SmadaVisualizationController < ApplicationController
+class VisualizationController < ApplicationController
 	def index
 	end
 end
