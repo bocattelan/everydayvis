@@ -18,5 +18,6 @@
 //= require fullcalendar
 //= require c3
 //= require_tree ./vis
-
+//= require_tree .
 $(function(){ $(document).foundation(); });
+//= require_tree .
